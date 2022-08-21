@@ -4,10 +4,10 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "build:prod": "webpack --mode production",
     "build:dev": "webpack --mode development",
-    "dev": "webpack-dev-server --mode development --open",
-    "start": "webpack-dev-server --mode development --open"
+    "build:prod": "webpack --mode production",
+    "serve:dev": "webpack-dev-server --mode development --open",
+    "serve:prod": "webpack-dev-server --mode production --open"
   },
   "keywords": [],
   "author": "",
