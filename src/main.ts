@@ -7,8 +7,8 @@ import { loader } from './resources';
 // engine
 const engine = new ex.Engine({
   backgroundColor: ex.Color.White,
-  width: 600,
-  height: 400,
+  width: 800,
+  height: 800,
   fixedUpdateFps: 60,
   antialiasing: false // Turn off anti-aliasing for pixel art graphics
 });
