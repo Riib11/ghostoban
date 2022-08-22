@@ -17,7 +17,7 @@ const engine = new ex.Engine({
 ex.Physics.acc = new ex.Vector(0, 0);
 
 // create player
-const player = new Player();
+const player = new Player(300, 200);
 
 const level1 = new ex.Scene();
 level1.add(player);
