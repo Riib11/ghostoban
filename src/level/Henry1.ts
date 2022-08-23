@@ -5,13 +5,13 @@ import { Level } from '../level';
 export class Henry1 extends Level {
   constructor() {
     super({
-      player_pos: ex.vec(100, 400)
+      player_pos: ex.vec(100, 500)
     });
 
     // do stuff to setup level
     this.addGhost(new TelekinesisGhost({
       level: this,
-      path: [ex.vec(150, 150), ex.vec(650, 150), ex.vec(650, 650), ex.vec(150, 650)],
+      path: [ex.vec(100, 100), ex.vec(900, 100), ex.vec(900, 900), ex.vec(100, 900)],
       speed: 100,
     }));
   }

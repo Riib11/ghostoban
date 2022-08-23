@@ -9,8 +9,7 @@ ex.Physics.useArcadePhysics();
 // engine
 const engine = new ex.Engine({
   backgroundColor: ex.Color.White,
-  width: 800,
-  height: 800,
+  resolution: { width: 1000, height: 1000 },
   fixedUpdateFps: 60,
   antialiasing: false // Turn off anti-aliasing for pixel art graphics
 });
