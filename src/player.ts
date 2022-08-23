@@ -1,13 +1,16 @@
 import * as ex from 'excalibur';
+import { Level } from './level';
 
 const points = [ex.vec(0, 0), ex.vec(50, 0), ex.vec(50, 50), ex.vec(0, 50)];
 const offset = ex.vec(-25, -25);
 
 export class Player extends ex.Actor {
+  level: Level;
   health: number;
   speed: number;
 
   constructor(args: {
+    level: Level,
     pos: ex.Vector,
   }) {
     let actorArgs: ex.ActorArgs = {
@@ -18,7 +21,7 @@ export class Player extends ex.Actor {
     actorArgs.collisionGroup = ex.CollisionGroupManager.groupByName("player"),
       actorArgs.collider = new ex.PolygonCollider({ points, offset })
     super(actorArgs);
-
+    this.level = args.level;
     this.health = 100;
     this.speed = 200;
 

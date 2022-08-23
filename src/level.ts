@@ -3,16 +3,13 @@ import { Ghost } from './ghost';
 import { Item } from './item';
 import { Player } from './player';
 
-type ghost_id = number;
-type item_id = number;
-
 export class Level extends ex.Scene {
   // player
   player: Player;
   // ghosts
-  ghosts: Map<ghost_id, Ghost>;
+  ghosts: Array<Ghost>;
   // items
-  items: Map<item_id, Item>;
+  items: Array<Item>;
 
   // constructor
   constructor(args: {
@@ -21,32 +18,30 @@ export class Level extends ex.Scene {
     super();
     // init player
     this.player = new Player({
+      level: this,
       pos: args.player_pos
     });
+    this.add(this.player);
     // init ghosts
-    this.ghosts = new Map();
+    this.ghosts = new Array();
     // init items
-    this.items = new Map();
+    this.items = new Array();
   }
 
   onInitialize(_engine: ex.Engine): void {
-    this.add(this.player);
+
   }
 
   // utility functions for interacting with the state
 
-  addGhost(ghost: Ghost): ghost_id {
-    let ghost_id = this.ghosts.size;
-    this.ghosts.set(ghost_id, ghost);
+  addGhost(ghost: Ghost): void {
+    this.ghosts.push(ghost);
     this.add(ghost);
-    return ghost_id;
   }
 
-  addItem(item: Item): item_id {
-    let item_id = this.items.size;
-    this.items.set(item_id, item);
+  addItem(item: Item): void {
+    this.items.push(item);
     this.add(item);
-    return item_id;
   }
 
   killPlayerActor(): void {
