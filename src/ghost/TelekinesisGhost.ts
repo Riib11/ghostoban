@@ -7,8 +7,6 @@ const points = [ex.vec(0, 0), ex.vec(50, 0), ex.vec(50, 50), ex.vec(0, 50)];
 const offset = ex.vec(-25, -25);
 
 export class TelekinesisGhost extends Ghost {
-  // the path point the ghost is currently moving towards
-  target_ix: number;
   path: ex.Vector[];
   speed: number;
 
@@ -27,7 +25,6 @@ export class TelekinesisGhost extends Ghost {
       offset,
     });
 
-    this.target_ix = 1;
     this.path = args.path;
     this.speed = args.speed;
   }
