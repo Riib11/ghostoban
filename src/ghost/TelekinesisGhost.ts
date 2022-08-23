@@ -19,9 +19,9 @@ export class TelekinesisGhost extends Ghost {
       level: args.level,
       name: 'TelekinesisGhost',
       pos: args.path.length == 0 ? Vector.Zero : args.path[0],
-      points,
       collisionType: ex.CollisionType.Fixed,
       collisionGroup: ex.CollisionGroupManager.groupByName("player"),
+      points,
       offset,
     });
 
