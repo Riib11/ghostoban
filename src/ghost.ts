@@ -4,6 +4,7 @@ import { Level } from './level';
 export class Ghost extends ex.Actor {
   level: Level;
   points: ex.Vector[];
+  speed: number;
 
   constructor(args: {
     level: Level,
@@ -13,6 +14,8 @@ export class Ghost extends ex.Actor {
     collisionType: ex.CollisionType,
     collisionGroup: ex.CollisionGroup,
     offset: ex.Vector,
+    color: ex.Color,
+    speed: number,
   }) {
     super({
       ...args,
@@ -20,15 +23,21 @@ export class Ghost extends ex.Actor {
     });
     this.level = args.level;
     this.points = args.points;
+    this.speed = args.speed;
 
     // TMP: this is probably just for debugging
     this.graphics.use(new ex.Polygon({
       points: this.points,
-      color: ex.Color.Black,
+      color: args.color,
     }));
   }
 
   onInitialize(_engine: ex.Engine): void {
 
+  }
+
+  setVelTowards(pos: ex.Vector) {
+    let v = pos.sub(this.pos);
+    this.vel = v.normalize().scale(this.speed)
   }
 }

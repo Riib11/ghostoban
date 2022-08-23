@@ -1,6 +1,7 @@
 import * as ex from 'excalibur';
 import { Ghost } from './ghost';
 import { Item } from './item';
+import { ElectricalItem } from './item/ElectricalItem';
 import { Player } from './player';
 
 export class Level extends ex.Scene {
@@ -55,4 +56,9 @@ export class Level extends ex.Scene {
       this.killPlayerActor();
     }
   }
+
+  setCharged(item: ElectricalItem, charged: boolean) {
+    item.setCharged(charged);
+  }
+
 }

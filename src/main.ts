@@ -3,6 +3,7 @@ import { Level } from './level';
 import { Henry1 } from './level/Henry1';
 import { loader } from './resources';
 import { Accessory } from './accessory';
+import { Henry2 } from './level/Henry2';
 ex.Physics.useArcadePhysics();
 // import { Level } from './level';
 
@@ -30,8 +31,7 @@ engine.add('level1', level1);
 */
 
 // construct level
-// TMP: this is an example level
-const level = new Henry1();
+const level = new Henry2();
 
 // start level
 engine.add('main', level);

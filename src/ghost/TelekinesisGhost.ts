@@ -23,6 +23,8 @@ export class TelekinesisGhost extends Ghost {
       collisionGroup: ex.CollisionGroupManager.groupByName("player"),
       points,
       offset,
+      color: ex.Color.Black,
+      speed: args.speed
     });
 
     this.path = args.path;

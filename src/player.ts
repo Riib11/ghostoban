@@ -23,12 +23,18 @@ export class Player extends ex.Actor {
     super(actorArgs);
     this.level = args.level;
     this.health = 100;
-    this.speed = 200;
+    this.speed = 500;
 
     this.graphics.use(new ex.Polygon({
       points,
       color: ex.Color.Red,
     }));
+  }
+
+  onInitialize(_engine: ex.Engine): void {
+    this.on('collisionstart', (evt: ex.CollisionStartEvent) => {
+      // TODO
+    })
   }
 
   onPreUpdate(engine: ex.Engine, _delta: number): void {

@@ -13,6 +13,7 @@ export class Item extends ex.Actor {
     collisionType: ex.CollisionType,
     collisionGroup: ex.CollisionGroup,
     offset: ex.Vector,
+    color: ex.Color,
   }) {
     super({
       ...args,
@@ -20,13 +21,15 @@ export class Item extends ex.Actor {
     });
     this.level = args.level;
     this.points = args.points;
+    this.color = args.color;
   }
 
   onInitialize(_engine: ex.Engine): void {
     // TMP: this is probably just for debugging
     this.graphics.use(new ex.Polygon({
       points: this.points,
-      color: ex.Color.Black,
+      color: this.color,
     }));
   }
 }
+
