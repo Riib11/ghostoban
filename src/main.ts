@@ -53,5 +53,3 @@ engine.start(loader).then(() => {
   engine.goToScene('main');
 });
 
-(window as any).engine = engine;
-(window as any).level = level1;
