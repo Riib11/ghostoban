@@ -2,8 +2,9 @@ import * as ex from 'excalibur';
 import { Level } from './level';
 import { Henry1 } from './level/Henry1';
 import { loader } from './resources';
-import { Accessory } from './accessory';
+import { Accessory } from './accessories/accessory';
 import { Henry2 } from './level/Henry2';
+import { Jae1 } from './level/Jae1';
 ex.Physics.useArcadePhysics();
 // import { Level } from './level';
 

@@ -3,6 +3,7 @@ import { Ghost } from './ghost';
 import { Item } from './item';
 import { ElectricalItem } from './item/ElectricalItem';
 import { Player } from './player';
+import { Accessory } from './accessories/accessory';
 
 export class Level extends ex.Scene {
   // player
@@ -11,6 +12,7 @@ export class Level extends ex.Scene {
   ghosts: Array<Ghost>;
   // items
   items: Array<Item>;
+  accessories: Array<Accessory>;
 
   // constructor
   constructor(args: {
@@ -27,6 +29,7 @@ export class Level extends ex.Scene {
     this.ghosts = new Array();
     // init items
     this.items = new Array();
+    this.accessories = new Array();
   }
 
   onInitialize(_engine: ex.Engine): void {
@@ -43,6 +46,11 @@ export class Level extends ex.Scene {
   addItem(item: Item): void {
     this.items.push(item);
     this.add(item);
+  }
+  
+  addAccessory(accessory: Accessory): void {
+    this.accessories.push(accessory);
+    this.add(accessory);
   }
 
   killPlayerActor(): void {
