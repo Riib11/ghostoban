@@ -1,45 +1,58 @@
 import * as ex from 'excalibur';
 
-// const player_image = new ex.ImageSource('./res/TODO');
-// const player_sprite = player_image.toSprite();
-
-const player_shape = new ex.Polygon({
-  points: [ex.vec(0, 0), ex.vec(10, 0), ex.vec(10, 10), ex.vec(0, 10)],
-  color: ex.Color.Red
-})
+const points = [ex.vec(0, 0), ex.vec(50, 0), ex.vec(50, 50), ex.vec(0, 50)];
+const offset = ex.vec(-25, -25);
 
 export class Player extends ex.Actor {
-  constructor(x: number, y: number) {
-    super({
-      name: 'Playe',
-      pos: new ex.Vector(x, y),
-      collisionType: ex.CollisionType.Active,
-      collisionGroup: ex.CollisionGroupManager.groupByName("player"),
-      // collider: ex.Shape.Box(32, 50, ex.Vector.Half, ex.vec(0, 3))
-    });
+  health: number;
+  speed: number;
+
+  constructor(args: {
+    pos: ex.Vector,
+  }) {
+    let actorArgs: ex.ActorArgs = {
+      name: 'player',
+    };
+    actorArgs.pos = args.pos;
+    actorArgs.collisionType = ex.CollisionType.Active;
+    actorArgs.collisionGroup = ex.CollisionGroupManager.groupByName("player"),
+      actorArgs.collider = new ex.PolygonCollider({ points, offset })
+    super(actorArgs);
+
+    this.health = 100;
+    this.speed = 200;
+
+    this.graphics.use(new ex.Polygon({
+      points,
+      color: ex.Color.Red,
+    }));
   }
 
-  public onInitialize(engine: ex.Engine) {
-    this.graphics.use(player_shape);
-  }
-
-  onPreUpdate(engine: ex.Engine, delta: number): void {
-    // reset vel.x
-    this.vel.setTo(0, 0);
-
-    // Player input
-    if(engine.input.keyboard.isHeld(ex.Input.Keys.Left)) {
-      this.vel.x = -150;
-    } else 
-    if(engine.input.keyboard.isHeld(ex.Input.Keys.Right)) {
-        this.vel.x = 150;
+  onPreUpdate(engine: ex.Engine, _delta: number): void {
+    // vertical
+    let dy = 0;
+    if (engine.input.keyboard.isHeld(ex.Input.Keys.W) ||
+      engine.input.keyboard.isHeld(ex.Input.Keys.Up)) {
+      dy = -1;
+    } else if (engine.input.keyboard.isHeld(ex.Input.Keys.S) ||
+      engine.input.keyboard.isHeld(ex.Input.Keys.Down)) {
+      dy = 1;
     }
-    
-    if(engine.input.keyboard.isHeld(ex.Input.Keys.Up)) {
-        this.vel.y = -150;
-    } else
-    if(engine.input.keyboard.isHeld(ex.Input.Keys.Down)) {
-        this.vel.y = 150;
+    // horizontal
+    let dx = 0;
+    if (engine.input.keyboard.isHeld(ex.Input.Keys.A) ||
+      engine.input.keyboard.isHeld(ex.Input.Keys.Left)) {
+      dx = -1;
+    } else if (engine.input.keyboard.isHeld(ex.Input.Keys.D) ||
+      engine.input.keyboard.isHeld(ex.Input.Keys.Right)) {
+      dx = 1;
     }
+    // scale
+    if (dx !== 0 || dy !== 0) {
+      this.vel = ex.vec(dx, dy).normalize().scale(this.speed);
+    } else {
+      this.vel = ex.Vector.Zero;
+    }
+
   }
 }

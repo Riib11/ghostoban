@@ -1,8 +1,9 @@
-import { Console } from 'console';
 import * as ex from 'excalibur';
-import { Player } from './player';
+import { Level } from './level';
+import { Henry1 } from './level/Henry1';
 import { loader } from './resources';
 import { Accessory } from './accessory';
+ex.Physics.useArcadePhysics();
 // import { Level } from './level';
 
 // engine
@@ -15,8 +16,9 @@ const engine = new ex.Engine({
 });
 
 // global gravity
-ex.Physics.acc = new ex.Vector(0, 0);
+ex.Physics.acc = ex.vec(0, 0);
 
+/*
 // create player
 const player = new Player(300, 200);
 const accessory = new Accessory(300, 200);
@@ -26,6 +28,14 @@ level1.add(accessory);
 level1.add(player);
 
 engine.add('level1', level1);
+*/
+
+// construct level
+// TMP: this is an example level
+const level = new Henry1();
+
+// start level
+engine.add('main', level);
 
 // Game events to handle
 // engine.on('hidden', () => {
@@ -40,7 +50,7 @@ engine.add('level1', level1);
 // Start the engine
 engine.start(loader).then(() => {
   console.log('game start');
-  engine.goToScene('level1');
+  engine.goToScene('main');
 });
 
 (window as any).engine = engine;
