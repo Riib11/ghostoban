@@ -1,9 +1,9 @@
 import * as ex from 'excalibur';
 import { Level } from './level';
+import { Henry1 } from './level/Henry1';
 import { loader } from './resources';
 
 ex.Physics.useArcadePhysics();
-// ex.Physics.useRealisticPhysics();
 
 // engine
 const engine = new ex.Engine({
@@ -15,10 +15,11 @@ const engine = new ex.Engine({
 });
 
 // global gravity
-ex.Physics.acc = new ex.Vector(0, 0);
+ex.Physics.acc = ex.vec(0, 0);
 
 // construct level
-const level = new Level();
+// TMP: this is an example level
+const level = new Henry1();
 
 // start level
 engine.add('main', level);
