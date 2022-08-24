@@ -6,7 +6,7 @@ import { Level } from '../level';
 const points = [ex.vec(-50, -50), ex.vec(50, -50), ex.vec(50, 50), ex.vec(-50, 50)];
 const offset = ex.vec(0, 0);
 
-export class ElectricityGhost extends Ghost {
+export class ElectricityGhost1 extends Ghost {
   origin_pos: ex.Vector;
   charged: boolean;
   favorite_electricalItem: ElectricalItem;
@@ -24,7 +24,7 @@ export class ElectricityGhost extends Ghost {
   }) {
     super({
       ...args,
-      name: 'ElectricityGhost',
+      name: 'ElectricityGhost1',
       collisionType: ex.CollisionType.Passive,
       collisionGroup: ex.CollisionGroupManager.groupByName("player"),
       points,

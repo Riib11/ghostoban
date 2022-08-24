@@ -1,7 +1,5 @@
 import * as ex from 'excalibur';
-import { Level } from '../level';
 import { ui } from '../ui';
-import { Henry1 } from './Henry1';
 
 export class LevelSelector extends ex.Scene {
 
@@ -14,7 +12,6 @@ export class LevelSelector extends ex.Scene {
       btn.className = 'button button--startLevel';
       btn.onclick = (e) => {
         e.preventDefault();
-        this.engine.currentScene.clear();
         this.engine.goToScene(name);
       }
       ui.appendChild(btn);

@@ -1,5 +1,5 @@
 import * as ex from 'excalibur';
-import { ElectricityGhost } from '../ghost/ElectricityGhost';
+import { ElectricityGhost1 } from '../ghost/ElectricityGhost1';
 import { TelekinesisGhost } from '../ghost/TelekinesisGhost';
 import { Battery } from '../item/Battey';
 import { ElectricalItem } from '../item/ElectricalItem';
@@ -41,7 +41,7 @@ export class Henry2 extends Level {
       charged: true
     });
 
-    const ghost = new ElectricityGhost({
+    const ghost = new ElectricityGhost1({
       level: this,
       pos: ex.vec(100, 500),
       speed: 200,
