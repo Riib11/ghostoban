@@ -95,18 +95,16 @@ export class ElectricityGhost1 extends Ghost {
         // Go towards closest charged electrical item, if there is one.
         // Otherwise, go towards origin.
         let current: { item: ElectricalItem, dist2: number } | undefined;
-        this.level.items.forEach(item => {
-          if (item instanceof ElectricalItem && item.charged) {
-            if (current !== undefined) {
-              let dist2 = this.pos.squareDistance(item.pos);
-              if (dist2 < current.dist2) {
-                current = { item, dist2 };
-              }
-            } else {
-              current = { item, dist2: this.pos.squareDistance(item.pos) };
+        this.electricalItems.forEach(item => {
+          if (current !== undefined) {
+            let dist2 = this.pos.squareDistance(item.pos);
+            if (dist2 < current.dist2) {
+              current = { item, dist2 };
             }
+          } else {
+            current = { item, dist2: this.pos.squareDistance(item.pos) };
           }
-        });
+        })
         if (current !== undefined) {
           this.setVelTowards(current.item.pos);
         } else {
