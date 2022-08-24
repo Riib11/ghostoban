@@ -11,7 +11,7 @@ export class Ghost extends ex.Actor {
     name: string,
     pos: ex.Vector,
     points: ex.Vector[],
-    collisionType: ex.CollisionType,
+    collisionType?: ex.CollisionType,
     collisionGroup?: ex.CollisionGroup,
     offset: ex.Vector,
     color: ex.Color,
