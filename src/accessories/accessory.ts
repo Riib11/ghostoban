@@ -9,7 +9,7 @@ export interface IHash {
 }
 
 
-const points = [ex.vec(0, 20), ex.vec(20, 0), ex.vec(0, -20), ex.vec(-20, 0)];
+const points = [ex.vec(-25, -25), ex.vec(25, -25), ex.vec(25, 25), ex.vec(-25, 25)];
 const offset = ex.vec(0, 0);
 
 const DETECT_RADIUS = 200;
@@ -41,52 +41,23 @@ export class Accessory extends Item {
     this.animation_state = 0;
     this.is_float = false;
     
-    this.on('precollision', (evt: ex.PreCollisionEvent) => {
-      let other = evt.other;
-      if (other instanceof Ghost) {
-        this.is_float = true;
-      }
-      
-    });
+    // this.on('precollision', (evt: ex.PreCollisionEvent) => {
+    //   let other = evt.other;
+    //   if (other instanceof Ghost) {
+    //     this.is_float = true;
+    //   }
+    // 
+    // });
     
-    this.on('collisionend', (evt: ex.CollisionEndEvent) => {
-      let other = evt.other;
-      if (other instanceof Ghost) {
-        this.is_float = false;
-      }
-    });
+    // this.on('collisionend', (evt: ex.CollisionEndEvent) => {
+    //   let other = evt.other;
+    //   if (other instanceof Ghost) {
+    //     this.is_float = false;
+    //   }
+    // });
     
   }//constructer
   
-  // constructor(x: number, y: number, image_name: string) {
-  //   super({
-  //     name: 'Accessor',
-  //     pos: new ex.Vector(x, y),
-  //     collisionType: ex.CollisionType.Passive,
-  //     collisionGroup: ex.CollisionGroupManager.groupByName("player"),
-  //     // collider: ex.Shape.Box(32, 50, ex.Vector.Half, ex.vec(0, 3))
-  //     radius: DETECT_RADIUS,
-  //   });
-  //   this.image_name = image_name;
-  //   this.animation_state = 0;
-  //   this.is_float = false;
-  // 
-  //   this.on('precollision', (evt: ex.PreCollisionEvent) => {
-  //     let other = evt.other;
-  //     if (other instanceof Ghost) {
-  //       this.is_float = true;
-  //     }
-  //   });
-  // 
-  //   this.on('collisionend', (evt: ex.CollisionEndEvent) => {
-  //     let other = evt.other;
-  //     if (other instanceof Ghost) {
-  //       this.is_float = false;
-  //     }
-  //   });
-  // 
-  // }
-
   public changeSprite(image_name: string) {
     this.graphics.use( image_list[image_name] );
   }
@@ -101,10 +72,18 @@ export class Accessory extends Item {
     this.vel.setTo(0, 0);
     
     if(engine.input.keyboard.isHeld(ex.Input.Keys.E)) {
-      // alert(tester.a)
+      // alert(this.level.player.pos)
       // alert(image_list["t"])
       // this.graphics.use(img_lamp_on.toSprite())
     }
+    
+    this.is_float = false;
+    this.level.ghosts.forEach(g => {
+      if (Level.getDistance(this.pos, g.pos) <= DETECT_RADIUS) {
+        this.is_float = true;
+      }
+    });
+    
     this.floatAnimation();
   }
   

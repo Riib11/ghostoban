@@ -39,6 +39,10 @@ export class Level extends LevelSelector {
     this.lit = args.lit !== undefined ? args.lit : false;
   }
 
+  static getDistance(pos1: ex.Vector, pos2: ex.Vector): number {
+    return Math.sqrt( (pos1.x-pos2.x)**2 + (pos1.y-pos2.y)**2 )
+  }
+
   // utility functions for interacting with the state
 
   addGhost(ghost: Ghost): void {
