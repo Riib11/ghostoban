@@ -1,4 +1,6 @@
 import * as ex from 'excalibur';
+import { Vector } from 'excalibur';
+import { vector } from 'excalibur/build/dist/Util/DrawUtil';
 import { Ghost } from '../ghost';
 import { ElectricalItem } from '../item/ElectricalItem';
 import { Level } from '../level';
@@ -71,7 +73,7 @@ export class ElectricityGhost1 extends Ghost {
           // ignore
         } else {
           if (other.charged) {
-            // If the ghost stops colliding with a harged ElectricalItem, the
+            // If the ghost stops colliding with a charged ElectricalItem, the
             // the item gets discharged, and this doens't affect the ghost.
             this.level.setCharged(other, false);
           }
@@ -95,13 +97,15 @@ export class ElectricityGhost1 extends Ghost {
         // Otherwise, go towards origin.
         let current: { item: ElectricalItem, dist2: number } | undefined;
         this.electricalItems.forEach(item => {
-          if (current !== undefined) {
+          if (current !== undefined && item.charged) {
             let dist2 = this.pos.squareDistance(item.pos);
             if (dist2 < current.dist2) {
               current = { item, dist2 };
             }
-          } else {
-            current = { item, dist2: this.pos.squareDistance(item.pos) };
+          }
+          else if (current === undefined && item.charged) {
+            let dist2 = this.pos.squareDistance(item.pos);
+            current = { item, dist2 };
           }
         })
         if (current !== undefined) {
@@ -116,7 +120,10 @@ export class ElectricityGhost1 extends Ghost {
         break;
       }
       case 'seeking origin': {
-        this.setVelTowards(this.origin_pos);
+        if (this.pos.squareDistance(this.origin_pos) < 3)
+          this.vel = Vector.Zero;
+        else
+          this.setVelTowards(this.origin_pos);
         break;
       }
     }

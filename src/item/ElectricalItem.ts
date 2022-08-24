@@ -17,7 +17,6 @@ export class ElectricalItem extends Item {
     super({
       ...args,
       collisionType: ex.CollisionType.Active,
-      collisionGroup: ex.CollisionGroupManager.groupByName('player'),
       color: chargedColor(args.charged)
     });
     this.charged = args.charged;
