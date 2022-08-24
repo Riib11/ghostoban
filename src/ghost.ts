@@ -1,5 +1,6 @@
 import * as ex from 'excalibur';
 import { Level } from './level';
+import { ghostG } from './collision';
 
 export class Ghost extends ex.Actor {
   level: Level;
@@ -20,7 +21,7 @@ export class Ghost extends ex.Actor {
     super({
       ...args,
       collider: new ex.PolygonCollider({ points: args.points, offset: args.offset }),
-      collisionGroup: args.collisionGroup || ex.CollisionGroupManager.groupByName("ghost")
+      collisionGroup: args.collisionGroup || ghostG
     });
     this.level = args.level;
     this.points = args.points;

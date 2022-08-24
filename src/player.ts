@@ -2,6 +2,7 @@ import * as ex from 'excalibur';
 import { ActivatableItem } from './item/ActivatableItem';
 import { Level } from './level';
 import { Nearby } from './nearby';
+import { playerG } from './collision';
 
 const points = [ex.vec(0, 0), ex.vec(50, 0), ex.vec(50, 50), ex.vec(0, 50)];
 const offset = ex.vec(-25, -25);
@@ -20,7 +21,7 @@ export class Player extends ex.Actor {
       ...args,
       name: 'player',
       collisionType: ex.CollisionType.Active,
-      collisionGroup: ex.CollisionGroupManager.groupByName("player"),
+      collisionGroup: playerG,
       collider: new ex.PolygonCollider({ points, offset })
     });
     this.level = args.level;

@@ -28,7 +28,6 @@ export class ElectricityGhost1 extends Ghost {
       ...args,
       name: 'ElectricityGhost1',
       collisionType: ex.CollisionType.Passive,
-      collisionGroup: ex.CollisionGroupManager.groupByName("player"),
       points,
       offset,
       color: chargedColor(args.charged),

@@ -20,7 +20,6 @@ export class TelekinesisGhost extends Ghost {
       name: 'TelekinesisGhost',
       pos: args.path.length == 0 ? Vector.Zero : args.path[0],
       collisionType: ex.CollisionType.Fixed,
-      collisionGroup: ex.CollisionGroupManager.groupByName("player"),
       points,
       offset,
       color: ex.Color.Black,
