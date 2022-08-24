@@ -15,9 +15,13 @@ export class Level extends LevelSelector {
   items: Array<Item>;
   accessories: Array<Accessory>;
 
+  // whether the level is lit
+  lit: boolean;
+
   // constructor
   constructor(args: {
-    player_pos: ex.Vector
+    player_pos: ex.Vector,
+    lit?: boolean
   }) {
     super();
     // init player
@@ -32,8 +36,7 @@ export class Level extends LevelSelector {
     this.items = new Array();
     this.accessories = new Array();
 
-    // TODO: does this get added here? or in main?
-    // this.add(new LevelSelector());
+    this.lit = args.lit !== undefined ? args.lit : false;
   }
 
   // utility functions for interacting with the state
@@ -53,19 +56,24 @@ export class Level extends LevelSelector {
     this.add(accessory);
   }
 
-  killPlayerActor(): void {
-    // TODO
-  }
-
-  damagePlayerActor(damage: number): void {
+  damagePlayer(damage: number): void {
     this.player.health = Math.max(this.player.health - damage, 0);
     // TODO: update healthbar
     if (this.player.health <= 0) {
-      this.killPlayerActor();
+      this.killPlayer();
     }
+  }
+
+  killPlayer(): void {
+    // TODO
   }
 
   setCharged(item: ElectricalItem, charged: boolean) {
     item.setCharged(charged);
+  }
+
+  setLit(lit: boolean) {
+    this.lit = lit;
+    // TODO: set lighting of scene somehow
   }
 }
