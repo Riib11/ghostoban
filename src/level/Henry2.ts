@@ -46,7 +46,8 @@ export class Henry2 extends Level {
       pos: ex.vec(100, 500),
       speed: 200,
       charged: false,
-      favorite_electricalItem: battery1
+      favorite_electricalItem: battery1,
+      electricalItems: [battery2, battery3]
     });
 
     this.addGhost(ghost);

@@ -10,6 +10,7 @@ export class ElectricityGhost1 extends Ghost {
   origin_pos: ex.Vector;
   charged: boolean;
   favorite_electricalItem: ElectricalItem;
+  electricalItems: ElectricalItem[];
   mode:
     'seeking charged ElectricalItem' |
     'seeking favorite ElectricalItem' |
@@ -21,6 +22,7 @@ export class ElectricityGhost1 extends Ghost {
     speed: number,
     charged: boolean,
     favorite_electricalItem: ElectricalItem,
+    electricalItems: ElectricalItem[],
   }) {
     super({
       ...args,
@@ -34,6 +36,7 @@ export class ElectricityGhost1 extends Ghost {
     this.origin_pos = args.pos;
     this.charged = args.charged;
     this.favorite_electricalItem = args.favorite_electricalItem;
+    this.electricalItems = args.electricalItems;
     this.mode = 'seeking charged ElectricalItem';
 
     this.on('collisionstart', (evt: ex.CollisionStartEvent) => {
@@ -51,7 +54,7 @@ export class ElectricityGhost1 extends Ghost {
             // item.
             this.setCharged(false);
             this.level.setCharged(other, true);
-            this.mode = 'seeking origin';
+            // this.mode = 'seeking origin'; // TODO not necessary?
           } else {
             // If the charged ghost collides with an uncharged ElectricalItem,
             // then the ghost charges the ElectricalItem. Doesn't discharge the
