@@ -11,6 +11,7 @@ const engine = new ex.Engine({
   canvasElementId: 'game',
   backgroundColor: ex.Color.White,
   resolution: { width: 1000, height: 1000 },
+  viewport: { width: 600, height: 600 },
   fixedUpdateFps: 60,
   antialiasing: false // Turn off anti-aliasing for pixel art graphics
 });
