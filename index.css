@@ -8,6 +8,10 @@ canvas {
  margin: auto;
 }
 
+#ui {
+  max-width: 100vw;
+}
+
 #ui .button {
   font-size: 24pt;
 }
