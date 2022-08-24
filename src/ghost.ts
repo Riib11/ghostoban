@@ -12,14 +12,15 @@ export class Ghost extends ex.Actor {
     pos: ex.Vector,
     points: ex.Vector[],
     collisionType: ex.CollisionType,
-    collisionGroup: ex.CollisionGroup,
+    collisionGroup?: ex.CollisionGroup,
     offset: ex.Vector,
     color: ex.Color,
     speed: number,
   }) {
     super({
       ...args,
-      collider: new ex.PolygonCollider({ points: args.points, offset: args.offset })
+      collider: new ex.PolygonCollider({ points: args.points, offset: args.offset }),
+      collisionGroup: args.collisionGroup || ex.CollisionGroupManager.groupByName("ghost")
     });
     this.level = args.level;
     this.points = args.points;
