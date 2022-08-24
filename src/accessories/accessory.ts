@@ -2,27 +2,42 @@ import * as ex from 'excalibur';
 import { Level } from '../level';
 import { Player } from '../player';
 import { Ghost } from '../ghost';
+import { Item } from '../item'
 
 export interface IHash {
   [details: string] : ex.Sprite;
 }
 
+
+const points = [ex.vec(0, 20), ex.vec(20, 0), ex.vec(0, -20), ex.vec(-20, 0)];
+const offset = ex.vec(0, 0);
+
 const DETECT_RADIUS = 200;
 
-export class Accessory extends ex.Actor {
+export class Accessory extends Item {
   animation_state: number;
   image_name: string;
   is_float: boolean;
-  constructor(x: number, y: number, image_name: string) {
+  
+  constructor(args: {
+    level: Level,
+    name: string,
+    pos: ex.Vector,
+    // points: ex.Vector[],
+    // offset: ex.Vector,
+    image_name: string,
+  }) {
     super({
-      name: 'Accessor',
-      pos: new ex.Vector(x, y),
-      collisionType: ex.CollisionType.Passive,
-      collisionGroup: ex.CollisionGroupManager.groupByName("player"),
-      // collider: ex.Shape.Box(32, 50, ex.Vector.Half, ex.vec(0, 3))
-      radius: DETECT_RADIUS,
+      ...args,
+      points: points,
+      offset: offset,
+      color: ex.Color.Black,
+      collisionType: ex.CollisionType.Active,
+      collisionGroup: ex.CollisionGroupManager.groupByName('player'),
+      // color: chargedColor(args.charged)
     });
-    this.image_name = image_name;
+    
+    this.image_name = args.image_name;
     this.animation_state = 0;
     this.is_float = false;
     
@@ -31,6 +46,7 @@ export class Accessory extends ex.Actor {
       if (other instanceof Ghost) {
         this.is_float = true;
       }
+      
     });
     
     this.on('collisionend', (evt: ex.CollisionEndEvent) => {
@@ -40,7 +56,36 @@ export class Accessory extends ex.Actor {
       }
     });
     
-  }
+  }//constructer
+  
+  // constructor(x: number, y: number, image_name: string) {
+  //   super({
+  //     name: 'Accessor',
+  //     pos: new ex.Vector(x, y),
+  //     collisionType: ex.CollisionType.Passive,
+  //     collisionGroup: ex.CollisionGroupManager.groupByName("player"),
+  //     // collider: ex.Shape.Box(32, 50, ex.Vector.Half, ex.vec(0, 3))
+  //     radius: DETECT_RADIUS,
+  //   });
+  //   this.image_name = image_name;
+  //   this.animation_state = 0;
+  //   this.is_float = false;
+  // 
+  //   this.on('precollision', (evt: ex.PreCollisionEvent) => {
+  //     let other = evt.other;
+  //     if (other instanceof Ghost) {
+  //       this.is_float = true;
+  //     }
+  //   });
+  // 
+  //   this.on('collisionend', (evt: ex.CollisionEndEvent) => {
+  //     let other = evt.other;
+  //     if (other instanceof Ghost) {
+  //       this.is_float = false;
+  //     }
+  //   });
+  // 
+  // }
 
   public changeSprite(image_name: string) {
     this.graphics.use( image_list[image_name] );
@@ -66,9 +111,9 @@ export class Accessory extends ex.Actor {
   public floatAnimation() {
     // this.is_float = false;
     const rotateAroundBackAndForth = new ex.ActionSequence(this, ctx => {
-      ctx.rotateTo(Math.PI/8, Math.PI*2, ex.RotationType.Clockwise);
+      ctx.rotateTo(Math.PI/8, Math.PI*1, ex.RotationType.Clockwise);
       // ctx.delay(100);
-      ctx.rotateTo(-Math.PI/8, Math.PI*2, ex.RotationType.CounterClockwise);
+      ctx.rotateTo(-Math.PI/8, Math.PI*1, ex.RotationType.CounterClockwise);
       // ctx.delay(100);
       ctx.rotateTo(0, Math.PI*2, ex.RotationType.Clockwise);
     });

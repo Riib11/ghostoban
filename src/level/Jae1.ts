@@ -19,8 +19,15 @@ export class Jae1 extends Level {
     }));
 
 
-    this.addAccessory(new Accessory(400, 200, "lamp"));
-    this.addAccessory(new Accessory(600, 200, "lamp"));
+    this.addAccessory(new Accessory({
+      level: this,
+      name: "lamp",
+      pos: ex.vec(400, 200),
+      // points: ex.Vector[],
+      // offset: ex.Vector,
+      image_name: "lamp",
+    }));
+    // this.addAccessory(new Accessory(600, 200, "lamp"));
   }
 
   onPreUpdate(_engine: ex.Engine, _delta: number): void {
