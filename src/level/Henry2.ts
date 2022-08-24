@@ -10,11 +10,9 @@ export class Henry2 extends Level {
     super({
       player_pos: ex.vec(100, 400)
     });
+  }
 
-    // do stuff to setup level
-
-    // this.add()
-
+  onInitialize(_engine: ex.Engine): void {
     const battery1 = new Battery({
       level: this,
       pos: ex.vec(400, 500),
@@ -55,10 +53,6 @@ export class Henry2 extends Level {
     this.addItem(battery1);
     this.addItem(battery2);
     this.addItem(battery3);
-  }
-
-  onInitialize(_engine: ex.Engine): void {
-
   }
 
   onPreUpdate(_engine: ex.Engine, _delta: number): void {

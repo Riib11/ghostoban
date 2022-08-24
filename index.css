@@ -1,0 +1,13 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+canvas {
+ box-shadow: 0 0 0 1px black;
+ margin: auto;
+}
+
+#ui .button {
+  font-size: 24pt;
+}

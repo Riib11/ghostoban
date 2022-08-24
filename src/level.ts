@@ -4,8 +4,9 @@ import { Item } from './item';
 import { ElectricalItem } from './item/ElectricalItem';
 import { Player } from './player';
 import { Accessory } from './accessories/accessory';
+import { LevelSelector } from './level/LevelSelector';
 
-export class Level extends ex.Scene {
+export class Level extends LevelSelector {
   // player
   player: Player;
   // ghosts
@@ -30,10 +31,9 @@ export class Level extends ex.Scene {
     // init items
     this.items = new Array();
     this.accessories = new Array();
-  }
 
-  onInitialize(_engine: ex.Engine): void {
-
+    // TODO: does this get added here? or in main?
+    // this.add(new LevelSelector());
   }
 
   // utility functions for interacting with the state
@@ -47,7 +47,7 @@ export class Level extends ex.Scene {
     this.items.push(item);
     this.add(item);
   }
-  
+
   addAccessory(accessory: Accessory): void {
     this.accessories.push(accessory);
     this.add(accessory);
@@ -68,5 +68,4 @@ export class Level extends ex.Scene {
   setCharged(item: ElectricalItem, charged: boolean) {
     item.setCharged(charged);
   }
-
 }
