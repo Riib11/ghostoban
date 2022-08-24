@@ -78,6 +78,7 @@ export class Level extends LevelSelector {
 
   setLit(lit: boolean) {
     this.lit = lit;
+    console.log('lit:', lit);
     // TODO: set lighting of scene somehow
   }
 }

@@ -1,10 +1,9 @@
 import * as ex from 'excalibur';
+import { Color } from 'excalibur';
 import { Item } from '../item';
 import { Level } from '../level';
-import { Player } from '../player';
 
-export class ActivatableItem extends Item {
-  active: boolean;
+export abstract class ActivatableItem extends Item {
 
   constructor(args: {
     level: Level,
@@ -13,17 +12,17 @@ export class ActivatableItem extends Item {
     color: ex.Color,
     points: ex.Vector[],
     offset: ex.Vector,
-    active: boolean,
   }) {
     super({
       ...args,
       collisionType: ex.CollisionType.Active,
       collisionGroup: ex.CollisionGroupManager.groupByName('player'),
     });
-    this.active = args.active;
   }
 
-  setActive(active: boolean) {
-    this.active = active;
-  }
+  abstract activate(): void;
+
+  setActivatable() {}
+  setNotActivatable() {}
+
 }

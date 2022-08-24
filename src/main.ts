@@ -5,6 +5,7 @@ import { loader } from './resources';
 import { Henry2 } from './level/Henry2';
 import { Jae1 } from './level/Jae1';
 import { Main } from './level/Main';
+import { Bretton1 } from './level/Bretton1';
 
 // engine
 const engine = new ex.Engine({
@@ -25,6 +26,7 @@ engine.add('Main', new Main());
 engine.add('Henry1', new Henry1());
 engine.add('Henry2', new Henry2());
 engine.add('Jae1', new Jae1());
+engine.add('Bretton1', new Bretton1());
 
 // Start the engine
 engine.start(loader).then(() => {

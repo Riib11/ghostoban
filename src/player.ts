@@ -1,5 +1,7 @@
 import * as ex from 'excalibur';
+import { ActivatableItem } from './item/ActivatableItem';
 import { Level } from './level';
+import { Nearby } from './nearby';
 
 const points = [ex.vec(0, 0), ex.vec(50, 0), ex.vec(50, 50), ex.vec(0, 50)];
 const offset = ex.vec(-25, -25);
@@ -8,19 +10,19 @@ export class Player extends ex.Actor {
   level: Level;
   health: number;
   speed: number;
+  nearbyActivatableItems: Nearby<ActivatableItem>;
 
   constructor(args: {
     level: Level,
     pos: ex.Vector,
   }) {
-    let actorArgs: ex.ActorArgs = {
+    super({
+      ...args,
       name: 'player',
-    };
-    actorArgs.pos = args.pos;
-    actorArgs.collisionType = ex.CollisionType.Active;
-    actorArgs.collisionGroup = ex.CollisionGroupManager.groupByName("player"),
-      actorArgs.collider = new ex.PolygonCollider({ points, offset })
-    super(actorArgs);
+      collisionType: ex.CollisionType.Active,
+      collisionGroup: ex.CollisionGroupManager.groupByName("player"),
+      collider: new ex.PolygonCollider({ points, offset })
+    });
     this.level = args.level;
     this.health = 100;
     this.speed = 500;
@@ -29,6 +31,11 @@ export class Player extends ex.Actor {
       points,
       color: ex.Color.Red,
     }));
+
+    this.nearbyActivatableItems = new Nearby(ActivatableItem, this, 100, {
+      enter: x => x.setActivatable(),
+      exit: x => x.setNotActivatable()
+    });
   }
 
   onInitialize(_engine: ex.Engine): void {
@@ -63,5 +70,10 @@ export class Player extends ex.Actor {
       this.vel = ex.Vector.Zero;
     }
 
+    if (engine.input.keyboard.wasPressed(ex.Input.Keys.Space)) {
+      for (const activatableItem of this.nearbyActivatableItems.nearby) {
+        activatableItem.activate();
+      }
+    }
   }
 }
