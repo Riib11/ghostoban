@@ -1,8 +1,9 @@
 import * as ex from 'excalibur';
 import { Activatable } from './component/Activatable';
 import { Level } from './level';
+import { ActorGraphic } from './ActorGraphic';
 
-export class Activator extends ex.Actor {
+export class Activator extends ActorGraphic {
 
   // the activatables that are currently in range to be activated by the
   // activator

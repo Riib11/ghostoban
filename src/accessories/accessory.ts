@@ -70,10 +70,12 @@ export class Accessory extends Item {
 
   onPreUpdate(engine: ex.Engine, delta: number): void {
     // reset vel.x
+    super.onPreUpdate(engine, delta);
     this.vel.setTo(0, 0);
-
+    
     if (engine.input.keyboard.isHeld(ex.Input.Keys.E)) {
-      // alert(this.level.player.pos)
+      alert(this.z)
+      alert(this.level.player.z)
       // alert(image_list["t"])
       // this.graphics.use(img_lamp_on.toSprite())
     }
@@ -84,8 +86,9 @@ export class Accessory extends Item {
         this.is_float = true;
       }
     });
-
+    
     this.floatAnimation();
+    // this.setZIndex(this.pos.y);
   }
 
   public floatAnimation() {

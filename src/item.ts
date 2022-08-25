@@ -1,8 +1,9 @@
 import * as ex from 'excalibur';
 import { Level } from './level';
 import { itemG } from './collision';
+import { ActorGraphic } from './ActorGraphic';
 
-export class Item extends ex.Actor {
+export class Item extends ActorGraphic {
   level: Level;
   points: ex.Vector[];
 

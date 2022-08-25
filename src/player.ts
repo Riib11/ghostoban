@@ -4,11 +4,12 @@ import { Nearby } from './nearby';
 import { playerG } from './collision';
 import { MovementController } from './MovementController';
 import { Activator } from './Activator';
+import { ActorGraphic } from './ActorGraphic';
 
 const points = [ex.vec(-25, -25), ex.vec(25, -25), ex.vec(25, 25), ex.vec(-25, 25)];
 const offset = ex.vec(0, 0);
 
-export class Player extends ex.Actor {
+export class Player extends ActorGraphic {
   level: Level;
   health: number;
 
@@ -34,5 +35,9 @@ export class Player extends ex.Actor {
       points,
       color: ex.Color.Red,
     }));
+  }
+  onPreUpdate(engine: ex.Engine, delta: number): void {
+    // super.setZIndex(this.pos.y);
+    this.z = this.pos.y;
   }
 }
