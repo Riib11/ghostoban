@@ -22,15 +22,17 @@ export class LightSwitch extends Item {
       color: computeColor(args.isActivated)
     });
 
-    this.addComponent(new Activatable(
-      this,
-      this.points,
-      (isActivated) => {
+    this.addComponent(new Activatable({
+      actor: this,
+      points: this.points,
+      key: ex.Input.Keys.E,
+      onChangeActivated: (isActivated) => {
+        console.log("setLit", isActivated)
         this.level.setLit(isActivated);
         this.color = computeColor(isActivated);
       },
-      args.isActivated
-    ))
+      isActivated: args.isActivated
+    }))
   }
 
 }

@@ -3,31 +3,32 @@ import { Activatable } from './component/Activatable';
 import { Level } from './level';
 
 export class Activator extends ex.Actor {
-  activationKey: ex.Input.Keys;
 
   // the activatables that are currently in range to be activated by the
   // activator
-  activatables: Activatable[];
+  activatables: Map<ex.Input.Keys, Activatable[]>;
 
   constructor(args: {
     radius: number,
-    activationKey: ex.Input.Keys
   }) {
     super({
       name: 'Activator',
       collisionType: ex.CollisionType.Passive,
       collider: new ex.CircleCollider({ radius: args.radius })
     });
-    this.activationKey = args.activationKey;
-    this.activatables = [];
+    this.activatables = new Map();
   }
 
   onInitialize(_engine: ex.Engine): void {
     this.on('collisionstart', evt => {
       evt.other.getComponents().forEach(comp => {
         if (comp instanceof Activatable) {
-          this.activatables.push(comp);
-          comp.setShowTrigger(true);
+          // insert into comps
+          let comps = this.activatables.get(comp.key);
+          if (comps !== undefined) comps.push(comp);
+          else this.activatables.set(comp.key, [comp]);
+          // update label
+          comp.setShowLabel(true);
         }
       })
     })
@@ -35,18 +36,22 @@ export class Activator extends ex.Actor {
     this.on('collisionend', evt => {
       evt.other.getComponents().forEach(comp => {
         if (comp instanceof Activatable) {
-          let i = this.activatables.indexOf(comp);
-          if (i !== undefined)
-            this.activatables.splice(i, 1);
-          comp.setShowTrigger(false);
+          let comps = this.activatables.get(comp.key);
+          if (comps !== undefined) {
+            let i = comps.indexOf(comp);
+            if (i !== undefined) comps.splice(i, 1);
+          }
+          comp.setShowLabel(false);
         }
       })
     })
   }
 
   onPreUpdate(engine: ex.Engine, _delta: number): void {
-    if (engine.input.keyboard.wasPressed(this.activationKey)) {
-      this.activatables.forEach(activatable => activatable.toggleActivated());
-    }
+    this.activatables.forEach((comps, key) => {
+      if (engine.input.keyboard.wasPressed(key)) {
+        comps.forEach(comp => comp.toggleActivated());
+      }
+    });
   }
 }

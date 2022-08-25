@@ -5,23 +5,25 @@ export class Activatable extends ex.Component<'activatable'> {
 
   isActivated: boolean;
   label: ex.Label;
+  key: ex.Input.Keys;
   onChangeActivated: (isActivated: boolean) => void;
 
-  constructor(
+  constructor(args: {
     actor: ex.Actor,
     points: ex.Vector[],
+    key: ex.Input.Keys,
     onChangeActivated: (isActivated: boolean) => void,
-    isActivated: boolean = false,
-  ) {
+    isActivated?: boolean
+  }) {
     super();
-    this.onChangeActivated = onChangeActivated;
-    this.isActivated = isActivated;
+    this.onChangeActivated = args.onChangeActivated;
+    this.isActivated = args.isActivated ?? false;
 
-    let topPoint = points.reduce((prev, curr) => curr.y < prev.y ? curr : prev);
-    let rightPoint = points.reduce((prev, curr) => curr.x > prev.x ? curr : prev);
-    let leftPoint = points.reduce((prev, curr) => curr.x < prev.x ? curr : prev);
+    let topPoint = args.points.reduce((prev, curr) => curr.y < prev.y ? curr : prev);
+    let rightPoint = args.points.reduce((prev, curr) => curr.x > prev.x ? curr : prev);
+    let leftPoint = args.points.reduce((prev, curr) => curr.x < prev.x ? curr : prev);
     this.label = new ex.Label({
-      text: "E",
+      text: args.key,
       pos: ex.vec((rightPoint.x + leftPoint.x) / 2, topPoint.y - 20),
       font: new ex.Font({
         family: 'helvetica',
@@ -31,7 +33,8 @@ export class Activatable extends ex.Component<'activatable'> {
       })
     });
     this.label.graphics.visible = false;
-    actor.addChild(this.label);
+    this.key = args.key
+    args.actor.addChild(this.label);
   }
 
   setActivated(isActivated: boolean) {
@@ -45,7 +48,7 @@ export class Activatable extends ex.Component<'activatable'> {
     this.setActivated(!this.isActivated);
   }
 
-  setShowTrigger(showTrigger: boolean) {
+  setShowLabel(showTrigger: boolean) {
     this.label.graphics.visible = showTrigger;
   }
 }

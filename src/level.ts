@@ -36,7 +36,11 @@ export class Level extends LevelSelector {
     this.items = new Array();
     this.accessories = new Array();
 
-    this.lit = args.lit ?? false;
+    this.lit = args.lit ?? true;
+  }
+
+  onInitialize(_engine: ex.Engine): void {
+    this.setLit(this.lit);
   }
 
   static getDistance(pos1: ex.Vector, pos2: ex.Vector): number {
@@ -69,7 +73,8 @@ export class Level extends LevelSelector {
   }
 
   killPlayer(): void {
-    // TODO
+    console.log("killPlayer")
+    this.engine.goToScene('Death');
   }
 
   setCharged(item: ElectricalItem, charged: boolean) {
@@ -78,8 +83,6 @@ export class Level extends LevelSelector {
 
   setLit(lit: boolean) {
     this.lit = lit;
-    console.log('lit:', lit);
-    // TODO: set lighting of scene somehow
     this.engine.backgroundColor = this.lit ? ex.Color.White : ex.Color.Gray;
   }
 }

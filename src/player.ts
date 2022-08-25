@@ -26,7 +26,7 @@ export class Player extends ex.Actor {
     this.level = args.level;
     this.health = 100;
     this.addChild(new MovementController({ actor: this, speed: 500 }));
-    this.addChild(new Activator({ radius: 50, activationKey: ex.Input.Keys.E }));
+    this.addChild(new Activator({ radius: 50, }));
   }
 
   onInitialize(_engine: ex.Engine): void {
