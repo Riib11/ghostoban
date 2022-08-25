@@ -47,6 +47,13 @@ export class Jae1 extends Level {
       pos: ex.vec(500, 550),
       type: "LR",
     }));
+    
+    this.addWall(new Wall({
+      level: this,
+      name: "dark_table_1",
+      pos: ex.vec(400, 250),
+      type: "dark_table_1",
+    }));
 
     this.addAccessory(new Accessory({
       level: this,
