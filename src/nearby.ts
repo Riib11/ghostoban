@@ -1,4 +1,4 @@
-import { Actor, CollisionGroupManager, CollisionType, Color, Entity } from "excalibur";
+import { Actor, CollisionGroupManager, CollisionType, Entity } from "excalibur";
 
 export class Nearby<T extends Actor> extends Actor {
 
