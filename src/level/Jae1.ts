@@ -2,6 +2,7 @@ import * as ex from 'excalibur';
 import { TelekinesisGhost } from '../ghost/TelekinesisGhost';
 import { Accessory } from '../accessories/accessory';
 import { Level } from '../level';
+import { Wall } from '../wall';
 
 export class Jae1 extends Level {
   constructor() {
@@ -18,6 +19,34 @@ export class Jae1 extends Level {
       speed: 100,
     }));
 
+    this.addWall(new Wall({
+      level: this,
+      name: "wall",
+      pos: ex.vec(500, 400),
+      type: "",
+    }));
+    
+    this.addWall(new Wall({
+      level: this,
+      name: "wall",
+      pos: ex.vec(500+75, 400),
+      type: "R",
+    }));
+    
+    this.addWall(new Wall({
+      level: this,
+      name: "wall",
+      pos: ex.vec(500-75, 400),
+      type: "L",
+    }));
+    
+    
+    this.addWall(new Wall({
+      level: this,
+      name: "wall",
+      pos: ex.vec(500, 550),
+      type: "LR",
+    }));
 
     this.addAccessory(new Accessory({
       level: this,

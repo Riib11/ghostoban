@@ -3,6 +3,7 @@ import { Ghost } from './ghost';
 import { Item } from './item';
 import { ElectricalItem } from './item/ElectricalItem';
 import { Player } from './player';
+import { Wall } from './wall';
 import { Accessory } from './accessories/accessory';
 import { LevelSelector } from './level/LevelSelector';
 
@@ -13,6 +14,7 @@ export class Level extends LevelSelector {
   ghosts: Array<Ghost>;
   // items
   items: Array<Item>;
+  walls: Array<Wall>;
   accessories: Array<Accessory>;
 
   // whether the level is lit
@@ -34,6 +36,7 @@ export class Level extends LevelSelector {
     this.ghosts = new Array();
     // init items
     this.items = new Array();
+    this.walls = new Array();
     this.accessories = new Array();
 
     this.lit = args.lit ?? true;
@@ -58,7 +61,12 @@ export class Level extends LevelSelector {
     this.items.push(item);
     this.add(item);
   }
-
+  
+  addWall(wall: Wall): void {
+    this.walls.push(wall);
+    this.add(wall);
+  }
+  
   addAccessory(accessory: Accessory): void {
     this.accessories.push(accessory);
     this.add(accessory);
