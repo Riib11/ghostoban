@@ -1,5 +1,4 @@
 import * as ex from 'excalibur';
-import { ActivatableItem } from './item/ActivatableItem';
 import { Level } from './level';
 import { Nearby } from './nearby';
 import { playerG } from './collision';
