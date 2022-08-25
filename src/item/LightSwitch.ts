@@ -1,31 +1,40 @@
 import * as ex from 'excalibur';
+import { Activatable } from '../component/Activatable';
+import { Item } from '../item';
 import { Level } from '../level';
-import { ActivatableItem } from './ActivatableItem';
 
-const points = [ex.vec(-50, -50), ex.vec(50, -50), ex.vec(50, 50), ex.vec(-50, 50)];
+const points = [ex.vec(-25, -25), ex.vec(25, -25), ex.vec(25, 25), ex.vec(-25, 25)];
 const offset = ex.vec(0, 0);
 
-export class LightSwitch extends ActivatableItem {
-  isOn: boolean;
+export class LightSwitch extends Item {
 
   constructor(args: {
     level: Level,
     name: string,
     pos: ex.Vector,
-    isOn: boolean,
+    isActivated: boolean // starts on or off
   }) {
     super({
       ...args,
       points,
       offset,
-      color: ex.Color.Blue
+      collisionType: ex.CollisionType.Fixed,
+      color: computeColor(args.isActivated)
     });
-    this.isOn = args.isOn;
+
+    this.addComponent(new Activatable(
+      this,
+      this.points,
+      (isActivated) => {
+        this.level.setLit(isActivated);
+        this.color = computeColor(isActivated);
+      },
+      args.isActivated
+    ))
   }
 
-  activate() {
-    this.isOn = !this.isOn;
-    this.level.setLit(this.isOn);
-  }
+}
 
+function computeColor(isActivated: boolean): ex.Color {
+  return isActivated ? ex.Color.Yellow : ex.Color.Black;
 }

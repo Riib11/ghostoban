@@ -13,10 +13,10 @@ export class Bretton1 extends Level {
   onInitialize(_engine: Engine): void {
     this.addItem(new LightSwitch({
       level: this,
-      name: 'light',
+      name: 'LightSwitch',
       pos: vec(600, 600),
-      isOn: true
-    }))
+      isActivated: true
+    }));
   }
 
 }

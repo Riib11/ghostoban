@@ -1,4 +1,5 @@
 import { Actor, CollisionGroupManager, CollisionType, Entity } from "excalibur";
+import { Activatable } from "./component/Activatable";
 
 export class Nearby<T extends Actor> extends Actor {
 
@@ -8,7 +9,6 @@ export class Nearby<T extends Actor> extends Actor {
     enter?(x: T): void,
     exit?(x: T): void
   }) {
-
     super({
       radius,
       collisionType: CollisionType.Passive,

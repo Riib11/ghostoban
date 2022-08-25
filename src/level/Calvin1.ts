@@ -17,7 +17,7 @@ export class Calvin1 extends Level {
       level: this,
       name: 'light',
       pos: vec(300, 300),
-      isOn: true
+      isActivated: true
     }))
 
     const battery2 = new Battery({
