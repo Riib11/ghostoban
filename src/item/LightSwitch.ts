@@ -28,12 +28,4 @@ export class LightSwitch extends ActivatableItem {
     this.level.setLit(this.isOn);
   }
 
-  setActivatable() {
-    this.color = ex.Color.Yellow;
-  }
-
-  setNotActivatable() {
-    this.color = ex.Color.Blue;
-  }
-
 }

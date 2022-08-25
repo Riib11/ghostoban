@@ -71,7 +71,7 @@ export class Player extends ex.Actor {
       this.vel = ex.Vector.Zero;
     }
 
-    if (engine.input.keyboard.wasPressed(ex.Input.Keys.Space)) {
+    if (engine.input.keyboard.wasPressed(ex.Input.Keys.E)) {
       for (const activatableItem of this.nearbyActivatableItems.nearby) {
         activatableItem.activate();
       }
