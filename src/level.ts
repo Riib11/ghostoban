@@ -36,11 +36,11 @@ export class Level extends LevelSelector {
     this.items = new Array();
     this.accessories = new Array();
 
-    this.lit = args.lit !== undefined ? args.lit : false;
+    this.lit = args.lit ?? false;
   }
 
   static getDistance(pos1: ex.Vector, pos2: ex.Vector): number {
-    return Math.sqrt( (pos1.x-pos2.x)**2 + (pos1.y-pos2.y)**2 )
+    return Math.sqrt((pos1.x - pos2.x) ** 2 + (pos1.y - pos2.y) ** 2)
   }
 
   // utility functions for interacting with the state
@@ -80,5 +80,6 @@ export class Level extends LevelSelector {
     this.lit = lit;
     console.log('lit:', lit);
     // TODO: set lighting of scene somehow
+    this.engine.backgroundColor = this.lit ? ex.Color.White : ex.Color.Gray;
   }
 }
