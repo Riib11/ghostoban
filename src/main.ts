@@ -4,6 +4,7 @@ import { Henry1 } from './level/Henry1';
 import { loader } from './resources';
 import { Henry2 } from './level/Henry2';
 import { Jae1 } from './level/Jae1';
+import { Jae2 } from './level/Jae2';
 import { Main } from './level/Main';
 import { Bretton1 } from './level/Bretton1';
 import { Calvin1 } from './level/Calvin1';
@@ -33,6 +34,7 @@ engine.add('Henry2', new Henry2());
 engine.add('Henry3', new Henry3());
 engine.add('Henry4', new Henry4());
 engine.add('Jae1', new Jae1());
+engine.add('Jae2', new Jae2());
 engine.add('Bretton1', new Bretton1());
 engine.add('Calvin1', new Calvin1());
 // Start the engine

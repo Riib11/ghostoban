@@ -16,13 +16,15 @@ const img_height = 100;
 const col_width = 50;
 const col_height = 50;
 
+const wall_space = 75;
+
 // const points = [ex.vec(-col_width, -col_height), ex.vec(col_width, -col_height), ex.vec(col_width, col_height), ex.vec(-col_width, col_height)];
 // const col_w = collider_list[];
 // const points = [ex.vec(-col_width, -col_height), ex.vec(col_width, -col_height), ex.vec(col_width, col_height), ex.vec(-col_width, col_height)];
 const offset = ex.vec(0, 0);
 
-// export class Wall extends ActorGraphic {
-export class Wall extends ex.Actor {
+export class Wall extends ActorGraphic {
+// export class Wall extends ex.Actor {
   level: Level
   type: string
 
@@ -88,7 +90,16 @@ export class Wall extends ex.Actor {
     //   },
     // }));
   }
-
+  
+  onPreUpdate(engine: ex.Engine, delta: number): void {
+    // super.setZIndex(this.pos.y);
+    this.z = this.pos.y - 5000;
+  }
+  
+  public static getSpacer() {
+    return wall_space;
+  }
+  
 }
 
 
