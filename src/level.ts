@@ -18,7 +18,7 @@ export class Level extends LevelSelector {
   accessories: Array<Accessory>;
 
   // whether the level is lit
-  lit: boolean;
+  lit: boolean; // TODO: rename to "isLighted"
 
   // constructor
   constructor(args: {
@@ -78,11 +78,12 @@ export class Level extends LevelSelector {
     this.items.push(item);
     this.add(item);
   }
-  
+
   addWall(wall: Wall): void {
     this.walls.push(wall);
     this.add(wall);
   }
+<<<<<<< HEAD
   
   addWallLine(pos: ex.Vector, countX: number, countY: number) {
     if (countY == 0) {
@@ -134,6 +135,9 @@ export class Level extends LevelSelector {
     // }));
   }
   
+=======
+
+>>>>>>> 2df270913e2156fdf9277bd01f04783ed4d1b322
   addAccessory(accessory: Accessory): void {
     this.accessories.push(accessory);
     this.add(accessory);
@@ -159,5 +163,9 @@ export class Level extends LevelSelector {
   setLit(lit: boolean) {
     this.lit = lit;
     this.engine.backgroundColor = this.lit ? ex.Color.White : ex.Color.Gray;
+  }
+
+  setItemPos(item: Item, pos: ex.Vector) {
+    item.pos = pos;
   }
 }
