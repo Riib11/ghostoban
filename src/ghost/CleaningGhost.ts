@@ -53,13 +53,6 @@ export class CleaningGhost extends Ghost {
       const mode = this.mode;
       if (mode.case === 'seeking item') {
         if (mode.item.id === evt.other.id) {
-          //   let offset = mode.item.pos.sub(this.pos);
-          //   this.actions
-          //     .callMethod(() => this.takeItem(mode.item, mode.origin_pos))
-          //     .moveTo(mode.origin_pos.sub(offset), this.speed)
-          //     .callMethod(() => this.dropItem())
-          //     .moveTo(this.origin_pos, this.speed);
-
           this.takeItem(mode.item, mode.origin_pos);
         }
       }
@@ -67,32 +60,7 @@ export class CleaningGhost extends Ghost {
   }
 
   onPreUpdate(_engine: ex.Engine, _delta: number): void {
-    console.log(this.mode)
     const mode = this.mode;
-
-    // if (mode.case === 'seeking origin') {
-    //   // gather up possible targets
-    //   var targets: { origin_pos: ex.Vector, item: Item }[] = [];
-    //   for (const { origin_pos, item } of this.origin_pos_items.values()) {
-    //     // if (!item.pos.equals(origin_pos))
-    //     if (!(item.pos.distance(origin_pos) <= sensitivity))
-    //       targets.push({ origin_pos, item });
-    //   }
-    //   // sort possible targets by distance to ghost
-    //   targets.sort((a, b) => a.item.pos.distance(this.pos) - b.item.pos.distance(this.pos));
-    //   // choose the closest possible target as target
-    //   let res = targets.shift();
-    //   if (res !== undefined) {
-    //     // if found a target, set mode to go to it
-    //     this.seekItem(res.item, res.origin_pos);
-    //   } else {
-    //     // otherwise, just go to origin
-    //     // this.setVelTowards(this.origin_pos);
-    //   }
-    // } else if (mode.case === 'seeking item origin') {
-    //   this.level.setItemPos(mode.item, this.pos.add(mode.offset))
-    // }
-
 
     if (mode.case === 'seeking origin') {
       // gather up possible targets

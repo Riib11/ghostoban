@@ -23,14 +23,7 @@ export class Henry5 extends Level {
         chair_poss.push(ex.vec(x * 200 + 200, y * 300 + 200));
       }
     }
-    // [
-    //   ex.vec(200, 200),
-    //   ex.vec(200, 400),
-    //   ex.vec(200, 600),
-    //   ex.vec(500, 900),
-    //   ex.vec(100, 500),
-    //   ex.vec(900, 500)
-    // ];
+
     var chairs: Chair[] = []
     chair_poss.forEach(pos => {
       const chair = new Chair({ level: this, pos });
