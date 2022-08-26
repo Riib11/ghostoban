@@ -1,0 +1,2 @@
+import { ImageSource } from "excalibur";
+

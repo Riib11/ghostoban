@@ -26,6 +26,7 @@ export class Accessory extends Item {
     pos: ex.Vector,
     // points: ex.Vector[],
     // offset: ex.Vector,
+    collisionGroup?: ex.CollisionGroup,
     image_name: string,
   }) {
     super({
@@ -34,7 +35,7 @@ export class Accessory extends Item {
       offset: offset,
       color: ex.Color.Black,
       collisionType: ex.CollisionType.Active,
-      collisionGroup: accessoryG,
+      collisionGroup: args.collisionGroup ?? accessoryG,
       // color: chargedColor(args.charged)
     });
 
@@ -72,7 +73,7 @@ export class Accessory extends Item {
     // reset vel.x
     super.onPreUpdate(engine, delta);
     this.vel.setTo(0, 0);
-    
+
     if (engine.input.keyboard.isHeld(ex.Input.Keys.E)) {
       alert(this.z)
       alert(this.level.player.z)
@@ -86,7 +87,7 @@ export class Accessory extends Item {
         this.is_float = true;
       }
     });
-    
+
     this.floatAnimation();
     // this.setZIndex(this.pos.y);
   }
