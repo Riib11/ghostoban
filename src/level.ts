@@ -83,7 +83,6 @@ export class Level extends LevelSelector {
     this.walls.push(wall);
     this.add(wall);
   }
-<<<<<<< HEAD
   
   addWallLine(pos: ex.Vector, countX: number, countY: number) {
     if (countY == 0) {
@@ -135,9 +134,6 @@ export class Level extends LevelSelector {
     // }));
   }
   
-=======
-
->>>>>>> 2df270913e2156fdf9277bd01f04783ed4d1b322
   addAccessory(accessory: Accessory): void {
     this.accessories.push(accessory);
     this.add(accessory);
