@@ -2,7 +2,7 @@ import * as ex from 'excalibur';
 import { Level } from './level';
 import { Nearby } from './nearby';
 import { playerG } from './collision';
-import { MovementController } from './MovementController';
+import { PlayerController } from './PlayerController';
 import { Activator } from './Activator';
 import { ActorGraphic } from './ActorGraphic';
 import { Damageable } from './Damageable';
@@ -33,7 +33,7 @@ export class Player extends ActorGraphic implements Damageable {
     });
     this.level = args.level;
     this.health = 100;
-    this.addChild(new MovementController({ actor: this, speed: 500 }));
+    this.addChild(new PlayerController({ player: this, speed: 500 }));
     this.addChild(new Activator({ radius: 50, }));
   }
 
