@@ -1,14 +1,18 @@
-import { CollisionGroupManager, CollisionType, Color, vec, Vector } from "excalibur";
+import { CollisionGroupManager, CollisionType, Color, Font, FontUnit, Label, TextAlign, vec, Vector } from "excalibur";
 import { Item } from "../item";
 import { Level } from "../level";
 import { isWeighted } from "../Weighted";
 
+const activationPressure = 20;
+
 export class PressurePlate extends Item {
+
+  pressure = 0;
+  label: Label;
 
   constructor(args: {
     level: Level,
     pos: Vector,
-    activationWeight: number,
     onActivate: () => void
   }) {
     super({
@@ -22,11 +26,42 @@ export class PressurePlate extends Item {
       color: Color.Violet
     });
 
+    this.label = new Label({
+      text: "0",
+      pos: Vector.Zero,
+      font: new Font({
+        family: 'helvetica',
+        size: 24,
+        unit: FontUnit.Px,
+        textAlign: TextAlign.Center,
+        color: Color.White
+      }),
+      z: Infinity
+    });
+    this.addChild(this.label);
+
     this.on('collisionstart', e => {
-      if (isWeighted(e.other) && e.other.weight >= args.activationWeight) {
-        args.onActivate();
+      if (isWeighted(e.other)) {
+        this.pressure += e.other.weight;
+        this.updateGraphics();
+        if (this.pressure >= activationPressure) {
+          args.onActivate();
+        }
       }
     });
+
+    this.on('collisionend', e => {
+      if (isWeighted(e.other)) {
+        this.pressure -= e.other.weight;
+        this.updateGraphics();
+      }
+    });
+  }
+
+  private updateGraphics() {
+    this.color = Color.Violet.darken(
+      Math.min(1, this.pressure / activationPressure));
+    this.label.text = this.pressure.toString();
   }
 
 }
