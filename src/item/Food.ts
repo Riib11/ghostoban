@@ -27,7 +27,7 @@ export class Food extends Item implements Damageable {
   }
 
   onDie() {
-    this.level.items.delete(this);
+    this.level.removeItem(this);
   }
 
 }

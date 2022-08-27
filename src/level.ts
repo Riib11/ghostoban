@@ -110,6 +110,10 @@ export class Level extends LevelSelector {
     this.add(item);
   }
 
+  removeItem(item: Item) {
+    this.items.delete(item);
+  }
+
   addWall(wall: Wall): void {
     this.walls.add(wall);
     this.add(wall);

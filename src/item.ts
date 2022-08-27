@@ -2,6 +2,7 @@ import * as ex from "excalibur";
 import { Level } from "./level";
 import { itemG } from "./collision";
 import { ActorGraphic } from "./ActorGraphic";
+import { ActorArgs } from "excalibur";
 
 export class Item extends ActorGraphic {
   level: Level;
@@ -16,7 +17,7 @@ export class Item extends ActorGraphic {
     collisionGroup?: ex.CollisionGroup;
     offset: ex.Vector;
     color?: ex.Color;
-  }) {
+  } & ActorArgs) {
     super({
       ...args,
       collider: new ex.PolygonCollider({
