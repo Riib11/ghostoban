@@ -7,6 +7,7 @@ export class Henry3 extends Level {
   constructor() {
     super({
       player_pos: ex.vec(200, 100),
+      exit_pos: ex.vec(950, 950),
       lit: false
     });
   }

@@ -7,7 +7,8 @@ export class Bretton2 extends Level {
 
   constructor() {
     super({
-      player_pos: vec(100, 100)
+      player_pos: vec(100, 100),
+      exit_pos: vec(950, 950)
     });
   }
 

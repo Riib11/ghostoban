@@ -1,19 +1,18 @@
 import * as ex from 'excalibur';
 import { Label } from 'excalibur';
-import { Level } from '../level';
 
-export class Death extends ex.Scene {
+export class Win extends ex.Scene {
   constructor() {
     super();
   }
 
   onInitialize(engine: ex.Engine): void {
-    engine.backgroundColor = ex.Color.Black;
+    engine.backgroundColor = ex.Color.White;
 
     this.add(new Label({
-      text: "DEATH",
+      text: "WIN",
       pos: ex.vec(500, 500),
-      color: ex.Color.White,
+      color: ex.Color.Black,
       font: new ex.Font({
         family: 'helvetica',
         size: 64,

@@ -8,7 +8,8 @@ import { Level } from '../level';
 export class Henry2 extends Level {
   constructor() {
     super({
-      player_pos: ex.vec(100, 400)
+      player_pos: ex.vec(100, 400),
+      exit_pos: ex.vec(950, 950)
     });
   }
 

@@ -3,8 +3,9 @@ import { Ghost } from "../ghost";
 import { Food } from "../item/Food";
 import { Level } from "../level";
 import { Player } from "../player";
+import { Weighted } from "../Weighted";
 
-export class HungryGhost extends Ghost {
+export class HungryGhost extends Ghost implements Weighted {
 
   weight = 0;
   target: Food | Player | undefined;
@@ -37,7 +38,10 @@ export class HungryGhost extends Ghost {
       this.actions.clearActions();
       this.target = target;
       this.actions.meet(target, this.speed).delay(500)
-        .callMethod(() => this.level.damage(target, 20));
+        .callMethod(() => {
+          this.level.damage(target, 20);
+          this.weight++;
+        });
     }
   }
 

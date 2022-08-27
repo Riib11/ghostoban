@@ -8,10 +8,12 @@ import { Accessory } from './accessories/accessory';
 import { LevelSelector } from './level/LevelSelector';
 import { images } from './resources';
 import { Damageable } from './Damageable';
+import { Exit } from './Exit';
 
 export class Level extends LevelSelector {
   // player
   player: Player;
+  exit: Exit;
   // ghosts
   ghosts: Set<Ghost>;
   // items
@@ -25,6 +27,8 @@ export class Level extends LevelSelector {
   // constructor
   constructor(args: {
     player_pos: ex.Vector,
+    exit_pos: ex.Vector,
+    exit_activated?: boolean,
     lit?: boolean
   }) {
     super();
@@ -34,6 +38,12 @@ export class Level extends LevelSelector {
       pos: args.player_pos
     });
     this.add(this.player);
+    this.exit = new Exit({
+      level: this,
+      pos: args.exit_pos,
+      activated: args.exit_activated
+    });
+    this.add(this.exit);
     // init ghosts
     this.ghosts = new Set();
     // init items
@@ -177,6 +187,15 @@ export class Level extends LevelSelector {
   killPlayer(): void {
     console.log("killPlayer")
     this.engine.goToScene('Death');
+  }
+
+  setExitActivated(activated: boolean) {
+    this.exit.setActivated(activated);
+  }
+
+  win() {
+    console.log('win');
+    this.engine.goToScene('Win');
   }
 
   setCharged(item: ElectricalItem, charged: boolean) {

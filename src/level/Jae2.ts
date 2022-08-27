@@ -7,7 +7,8 @@ import { Wall } from '../wall';
 export class Jae2 extends Level {
   constructor() {
     super({
-      player_pos: ex.vec(100, 500)
+      player_pos: ex.vec(100, 500),
+      exit_pos: ex.vec(950, 950)
     });
   }
 

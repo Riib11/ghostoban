@@ -14,6 +14,7 @@ import { Henry4 } from './level/Henry4';
 import { Henry5 } from './level/Henry5';
 import { Bretton2 } from './level/Bretton2';
 import { Bretton3 } from './level/Bretton3';
+import { Win } from './level/Win';
 
 // engine
 const engine = new ex.Engine({
@@ -32,6 +33,7 @@ ex.Physics.acc = ex.vec(0, 0);
 // add levels
 engine.add('Main', new Main());
 engine.add('Death', new Death());
+engine.add('Win', new Win());
 engine.add('Henry1', new Henry1());
 engine.add('Henry2', new Henry2());
 engine.add('Henry3', new Henry3());

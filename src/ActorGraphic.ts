@@ -1,11 +1,12 @@
 import * as ex from 'excalibur';
+import { ActorArgs } from 'excalibur';
 
 export class ActorGraphic extends ex.Actor {
   
   z_offset: number;
   
-  constructor(args: {}) {
-    super({...args});
+  constructor(args: ActorArgs) {
+    super(args);
     this.z_offset = 0;
   }
   
