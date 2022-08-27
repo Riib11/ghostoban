@@ -9,7 +9,7 @@ export default class StalkerGhost1 extends Ghost {
 
   /*
   A ghost the follows the player when the level is not lit. If the ghost is
-  colliding with the player, then deals damage.
+  colliding with the player, then kills player.
   */
 
   constructor(args: {
