@@ -91,11 +91,6 @@ export class Wall extends ActorGraphic {
     // }));
   }
   
-  onPreUpdate(engine: ex.Engine, delta: number): void {
-    // super.setZIndex(this.pos.y);
-    this.z = this.pos.y - 5000;
-  }
-  
   public static getSpacer() {
     return wall_space;
   }
