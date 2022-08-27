@@ -27,8 +27,6 @@ export class Door1 extends Level {
       key: ex.Input.Keys.E,
       isActivated: false,
       onChangeActivated: (isActivated) => door.setOpen(isActivated),
-      graphic_on: images.button_on.toSprite(),
-      graphic_off: images.button_off.toSprite(),
     });
     this.add(btn);
   }

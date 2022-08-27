@@ -2,6 +2,7 @@ import * as ex from "excalibur";
 import { Activatable } from "../component/Activatable";
 import { Item } from "../item";
 import { Level } from "../level";
+import { images } from "../resources";
 
 const points = [
   ex.vec(-25, -25),
@@ -23,8 +24,8 @@ export class Button extends Item {
     key: ex.Input.Keys,
     isActivated: boolean,  // starts on or off
     onChangeActivated: (isActivated: boolean) => void,
-    graphic_on: ex.Graphic,
-    graphic_off: ex.Graphic,
+    graphic_on?: ex.Graphic,
+    graphic_off?: ex.Graphic,
   }) {
     super({
       ...args,
@@ -34,8 +35,8 @@ export class Button extends Item {
       collisionType: ex.CollisionType.Fixed,
     });
 
-    this.graphic_on = args.graphic_on;
-    this.graphic_off = args.graphic_off;
+    this.graphic_on = args.graphic_on ?? images.button_on.toSprite();
+    this.graphic_off = args.graphic_off ?? images.button_off.toSprite();
     this.graphics.add('isActivated', this.graphic_on);
     this.graphics.add('!isActivated', this.graphic_off);
 
