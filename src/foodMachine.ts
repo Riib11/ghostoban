@@ -2,6 +2,7 @@ import { Actor, CollisionGroupManager, CollisionType, Color, Vector, Sprite, Ima
 import { Level } from "./level";
 import { Item } from "./item";
 import { Food } from "./item/Food";
+import { spikes } from "./Spikes";
 
 // image to come here:
 // const spikes = new ImageSource('./src/resources/spikes.png')
@@ -27,8 +28,8 @@ export class FoodMachine extends Item {
    * if activated again while some foods spawned from this machine exists,
    * it deletes those associated food. (resets all previous foods)
    */
-  
-  
+
+
   constructor(args: {
     level: Level,
     pos: Vector,
@@ -43,15 +44,15 @@ export class FoodMachine extends Item {
       points: points,
       offset: offset,
     });
-    this.foodCount: args.foodCount,
-    this.foods = new Set();
-    
+    this.foodCount = args.foodCount,
+      this.foods = new Set();
+
     // this.on('collisionstart', e => {
     //   if (e.other === args.level.player) {
     //     args.level.killPlayer();
     //   }
     // });
-    
+
   }
 
   onInitialize(_engine: ex.Engine): void {
@@ -63,6 +64,6 @@ export class FoodMachine extends Item {
       },
     }));
   }
-  
+
 
 }

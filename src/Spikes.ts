@@ -2,7 +2,7 @@ import { Actor, CollisionGroupManager, CollisionType, Color, Vector, Sprite, Ima
 import { Level } from "./level";
 import { Item } from "./item";
 
-const spikes = new ImageSource('./src/resources/spikes.png')
+export const spikes = new ImageSource('./src/resources/spikes.png')
 spikes.load();
 
 const col_width = 25;
@@ -35,7 +35,7 @@ export class Spikes extends Item {
         args.level.killPlayer();
       }
     });
-    
+
   }
 
   onInitialize(_engine: ex.Engine): void {
@@ -47,7 +47,7 @@ export class Spikes extends Item {
       },
     }));
   }
-  
+
   public static getSpacer() {
     return spikes_space;
   }
