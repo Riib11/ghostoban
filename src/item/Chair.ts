@@ -1,7 +1,7 @@
 import * as ex from 'excalibur';
 import { Item } from '../item';
 import { Level } from '../level';
-import { chair } from '../resources';
+import { images } from '../resources';
 import { SpriteItem } from '../SpriteItem';
 
 const points = [ex.vec(0, 0), ex.vec(16, 0), ex.vec(16, 29), ex.vec(0, 29)];
@@ -20,7 +20,7 @@ export class Chair extends SpriteItem {
       offset,
       collisionType: ex.CollisionType.Active,
       collisionGroup: ex.CollisionGroupManager.groupByName('player'),
-      imageSource: chair
+      imageSource: images.chair
     });
     this.scale = ex.vec(5, 5);
   }

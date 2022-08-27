@@ -6,6 +6,7 @@ import { Player } from './player';
 import { Wall } from './wall';
 import { Accessory } from './accessories/accessory';
 import { LevelSelector } from './level/LevelSelector';
+import { images } from './resources';
 
 export class Level extends LevelSelector {
   // player
@@ -38,12 +39,27 @@ export class Level extends LevelSelector {
     this.items = new Array();
     this.walls = new Array();
     this.accessories = new Array();
-    
+
     this.lit = args.lit ?? true;
   }
 
-  onInitialize(_engine: ex.Engine): void {
+  onInitialize(engine: ex.Engine): void {
     this.setLit(this.lit);
+
+    const floorScale = 2;
+    const sprite = images.floor.toSprite();
+    sprite.scale = ex.vec(floorScale, floorScale);
+    const tilemap = new ex.TileMap({
+      pos: ex.vec(0, 0),
+      rows: Math.ceil(1000 / sprite.height),
+      columns: Math.ceil(1000 / sprite.width),
+      tileWidth: sprite.width,
+      tileHeight: sprite.height,
+    });
+    for (const tile of tilemap.tiles) {
+      tile.addGraphic(sprite);
+    }
+    this.add(tilemap);
   }
 
   public reset() {
@@ -83,7 +99,7 @@ export class Level extends LevelSelector {
     this.walls.push(wall);
     this.add(wall);
   }
-  
+
   addWallLine(pos: ex.Vector, countX: number, countY: number) {
     if (countY == 0) {
       if (countX == 1) {
@@ -101,18 +117,18 @@ export class Level extends LevelSelector {
         pos: pos,
         type: "L",
       }));
-      for (let i = 1; i < countX-1; i += 1) {
+      for (let i = 1; i < countX - 1; i += 1) {
         this.addWall(new Wall({
           level: this,
           name: "wall",
-          pos: ex.vec(pos.x + i*Wall.getSpacer(), pos.y),
+          pos: ex.vec(pos.x + i * Wall.getSpacer(), pos.y),
           type: "",
         }));
       }
       this.addWall(new Wall({
         level: this,
         name: "wall",
-        pos: ex.vec(pos.x + (countX-1)*Wall.getSpacer(), pos.y),
+        pos: ex.vec(pos.x + (countX - 1) * Wall.getSpacer(), pos.y),
         type: "R",
       }));
     } else if (countX == 0) {
@@ -121,7 +137,7 @@ export class Level extends LevelSelector {
           level: this,
           name: "wall",
           // pos: ex.vec(pos.x, pos.y + i*Wall.getSpacer()),
-          pos: ex.vec(pos.x, pos.y + i*27),
+          pos: ex.vec(pos.x, pos.y + i * 27),
           type: "LR",
         }));
       }
@@ -133,7 +149,7 @@ export class Level extends LevelSelector {
     //   type: "",
     // }));
   }
-  
+
   addAccessory(accessory: Accessory): void {
     this.accessories.push(accessory);
     this.add(accessory);
