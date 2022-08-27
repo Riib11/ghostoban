@@ -4,6 +4,7 @@ import { Item } from './item';
 import { ElectricalItem } from './item/ElectricalItem';
 import { Player } from './player';
 import { Wall } from './wall';
+import { Spikes } from './Spikes';
 import { Accessory } from './accessories/accessory';
 import { LevelSelector } from './level/LevelSelector';
 import { images } from './resources';
@@ -109,6 +110,25 @@ export class Level extends LevelSelector {
   addWall(wall: Wall): void {
     this.walls.add(wall);
     this.add(wall);
+  }
+  
+  addSpike(spikes: Spikes): void {
+    //no spikes array obj needed yet
+    this.add(spikes);
+  }
+  
+  addSpikes(pos: ex.Vector, countX: number, countY: number, isHollow: boolean = false) {
+    // addSpikes
+    for (let i = 0; i < countY; i += 1) {
+      for (let j = 0; j < countX; j += 1) {
+        if (!isHollow || i == 0 || i == countY - 1 || j == 0 || j == countX - 1) {
+          this.addSpike(new Spikes({
+            level: this,
+            pos: ex.vec(pos.x + j * Spikes.getSpacer(), pos.y + i * Spikes.getSpacer()),
+          }));
+        }//if
+      }//inner for
+    }//outer for
   }
 
   addWallLineH(pos: ex.Vector, count: number) {

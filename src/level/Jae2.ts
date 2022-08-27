@@ -3,6 +3,7 @@ import { TelekinesisGhost } from '../ghost/TelekinesisGhost';
 import { Accessory } from '../accessories/accessory';
 import { Level } from '../level';
 import { Wall } from '../wall';
+import { Spikes } from '../Spikes';
 
 export class Jae2 extends Level {
   constructor() {
@@ -47,6 +48,19 @@ export class Jae2 extends Level {
     
     this.addWallLineH(ex.vec(500, 400), 3);
     this.addWallLineV(ex.vec(700, 200), 2);
+    
+    this.addSpike(new Spikes({
+      level: this,
+      pos: ex.vec(200, 700),
+    }));
+    this.addSpike(new Spikes({
+      level: this,
+      pos: ex.vec(250, 700),
+    }));
+    
+    this.addSpikes(ex.vec(100, 600), 6, 5, true);
+    this.addSpikes(ex.vec(100, 900), 2, 2, true);
+    
     
     // this.addWall(new Wall({
     //   level: this,

@@ -16,12 +16,7 @@ export class Bretton3 extends Level {
 
   onInitialize(engine: Engine): void {
     super.onInitialize(engine);
-    this.add(new Spikes({
-      level: this,
-      pos: vec(500, 500),
-      width: 300,
-      height: 300
-    }));
+    this.addSpikes(vec(400, 400), 5, 5, true);
     this.addItem(new PressurePlate({
       level: this,
       pos: vec(500, 500),
