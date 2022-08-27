@@ -1,15 +1,15 @@
 import * as ex from 'excalibur';
 
-export class MovementController extends ex.Entity {
-  actor: ex.Actor;
+export class MovementController<T extends ex.Actor> extends ex.Entity {
+  target: T;
   speed: number;
 
   constructor(args: {
-    actor: ex.Actor,
+    target: T,
     speed: number
   }) {
     super();
-    this.actor = args.actor;
+    this.target = args.target;
     this.speed = args.speed;
   }
 
@@ -34,9 +34,9 @@ export class MovementController extends ex.Entity {
     }
     // scale
     if (dx !== 0 || dy !== 0) {
-      this.actor.vel = ex.vec(dx, dy).normalize().scale(this.speed);
+      this.target.vel = ex.vec(dx, dy).normalize().scale(this.speed);
     } else {
-      this.actor.vel = ex.Vector.Zero;
+      this.target.vel = ex.Vector.Zero;
     }
   }
 }
