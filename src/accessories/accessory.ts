@@ -2,6 +2,7 @@ import * as ex from 'excalibur';
 import { Level } from '../level';
 import { Player } from '../player';
 import { Ghost } from '../ghost';
+import { ElectricityGhost1 } from '../ghost/ElectricityGhost1';
 import { Item } from '../item'
 import { accessoryG } from '../collision'
 
@@ -74,13 +75,6 @@ export class Accessory extends Item {
     super.onPreUpdate(engine, delta);
     this.vel.setTo(0, 0);
 
-    if (engine.input.keyboard.isHeld(ex.Input.Keys.E)) {
-      alert(this.z)
-      alert(this.level.player.z)
-      // alert(image_list["t"])
-      // this.graphics.use(img_lamp_on.toSprite())
-    }
-
     this.is_float = false;
     this.level.ghosts.forEach(g => {
       if (Level.getDistance(this.pos, g.pos) <= DETECT_RADIUS) {
@@ -89,7 +83,6 @@ export class Accessory extends Item {
     });
 
     this.floatAnimation();
-    // this.setZIndex(this.pos.y);
   }
 
   public floatAnimation() {
@@ -137,6 +130,89 @@ export class Accessory extends Item {
 }
 
 
+export class ElectricalAccessory extends Accessory {
+  animation_state_electric: number;
+  is_on: boolean;
+  
+  constructor(args: {
+    level: Level,
+    name: string,
+    pos: ex.Vector,
+    // points: ex.Vector[],
+    // offset: ex.Vector,
+    collisionGroup?: ex.CollisionGroup,
+    image_name: string,
+  }) {
+    super({
+      ...args
+    });
+    
+    this.animation_state_electric = 0;
+    this.is_on = false;
+  }//constructer
+
+  public changeSprite(image_name: string) {
+    super.changeSprite(image_name);
+    const flicker = new ex.Animation({
+      frames: [
+        {
+          graphic: image_list[this.image_name+"_on"],
+          duration: 200,
+        },
+        {
+          graphic: image_list[this.image_name],
+          duration: 600,
+        },
+        {
+          graphic: image_list[this.image_name+"_on"],
+          duration: 100,
+        },
+        {
+          graphic: image_list[this.image_name],
+          duration: 300,
+        },
+        {
+          graphic: image_list[this.image_name+"_on"],
+          duration: 100,
+        },
+        {
+          graphic: image_list[this.image_name],
+          duration: 300,
+        },
+      ],
+    });//animation
+    this.graphics.add("flicker", flicker);
+  }
+
+  // public onInitialize(engine: ex.Engine) {
+  //   super.onInitialize(engine);
+  //   this.changeSprite(this.image_name);
+  // }
+
+  onPreUpdate(engine: ex.Engine, delta: number): void {
+    // reset vel.x
+    super.onPreUpdate(engine, delta);
+    
+    this.is_on = false;
+    this.level.ghosts.forEach(g => {
+      if (g instanceof ElectricityGhost1 && Level.getDistance(this.pos, g.pos) <= DETECT_RADIUS) {
+        this.is_on = true;
+      }
+    });
+    
+    this.flickerAnimation();
+  }
+  
+  flickerAnimation() {
+    if (this.is_on) {
+      this.graphics.use("flicker");
+    } else {
+      this.graphics.use(image_list[this.image_name]);
+    }
+  }
+}
+
+
 
 
 
@@ -149,8 +225,15 @@ const image_list: IHash = {
   "lamp": new ex.Sprite({
     image: img_lamp,
     destSize: {
-      width: 200,
-      height: 200,
+      width: 50,
+      height: 40,
+    },
+  }),
+  "lamp_on": new ex.Sprite({
+    image: img_lamp_on,
+    destSize: {
+      width: 50,
+      height: 40,
     },
   }),
 

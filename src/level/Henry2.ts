@@ -2,6 +2,7 @@ import * as ex from 'excalibur';
 import { ElectricityGhost1 } from '../ghost/ElectricityGhost1';
 import { TelekinesisGhost } from '../ghost/TelekinesisGhost';
 import { Battery } from '../item/Battey';
+import { Accessory, ElectricalAccessory} from '../accessories/accessory';
 import { ElectricalItem } from '../item/ElectricalItem';
 import { Level } from '../level';
 
@@ -13,7 +14,9 @@ export class Henry2 extends Level {
     });
   }
 
-  onInitialize(_engine: ex.Engine): void {
+  onInitialize(engine: ex.Engine): void {
+    super.onInitialize(engine);
+    
     const battery1 = new Battery({
       level: this,
       pos: ex.vec(400, 500),
@@ -55,6 +58,16 @@ export class Henry2 extends Level {
     this.addItem(battery1);
     this.addItem(battery2);
     this.addItem(battery3);
+    
+    this.addAccessory(new ElectricalAccessory({
+      level: this,
+      name: "lamp",
+      pos: ex.vec(100, 350),
+      // points: ex.Vector[],
+      // offset: ex.Vector,
+      image_name: "lamp",
+    }));
+    
   }
 
   onPreUpdate(_engine: ex.Engine, _delta: number): void {

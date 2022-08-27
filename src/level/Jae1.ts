@@ -1,6 +1,6 @@
 import * as ex from 'excalibur';
 import { TelekinesisGhost } from '../ghost/TelekinesisGhost';
-import { Accessory } from '../accessories/accessory';
+import { Accessory, ElectricalAccessory} from '../accessories/accessory';
 import { Level } from '../level';
 import { Wall } from '../wall';
 
