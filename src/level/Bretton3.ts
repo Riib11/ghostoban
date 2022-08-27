@@ -20,7 +20,6 @@ export class Bretton3 extends Level {
     this.addItem(new PressurePlate({
       level: this,
       pos: vec(500, 500),
-      activationWeight: 20,
       onActivate() {
         this.level.setExitActivated(true);
       }
