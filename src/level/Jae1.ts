@@ -65,6 +65,15 @@ export class Jae1 extends Level {
       // offset: ex.Vector,
       image_name: "lamp",
     }).set_z_offset(100));
+    
+    this.addAccessory(new Accessory({
+      level: this,
+      name: "test",
+      pos: ex.vec(200, 500),
+      // points: ex.Vector[],
+      // offset: ex.Vector,
+      image_name: "test",
+    }).set_z_offset(100));
     // this.addAccessory(new Accessory(600, 200, "lamp"));
   }
 
