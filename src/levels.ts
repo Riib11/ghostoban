@@ -4,8 +4,12 @@ import { Bretton2 } from './level/Bretton2';
 import { Bretton3 } from './level/Bretton3';
 import { Calvin1 } from './level/Calvin1';
 import { Death } from './level/Death';
+import { Door1 } from './level/Door1';
 import { Henry1 } from './level/Henry1';
 import { Henry2 } from './level/Henry2';
+import { Henry3 } from './level/Henry3';
+import { Henry4 } from './level/Henry4';
+import { Henry5 } from './level/Henry5';
 import { Jae1 } from './level/Jae1';
 import { Jae2 } from './level/Jae2';
 import { Main } from './level/Main';
@@ -17,6 +21,10 @@ export const levels = {
   Win: new Win(),
   Henry1: new Henry1(),
   Henry2: new Henry2(),
+  Henry3: new Henry3(),
+  Henry4: new Henry4(),
+  Henry5: new Henry5(),
+  Door1: new Door1(),
   Jae1: new Jae1(),
   Jae2: new Jae2(),
   Bretton1: new Bretton1(),
