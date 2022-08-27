@@ -3,13 +3,13 @@ import { Level } from './level';
 import { ActorGraphic } from './ActorGraphic';
 import { playerG } from './collision'
 
-export interface IHash {
-  [details: string]: ex.Sprite;
-}
+// export interface IHash {
+//   [details: string]: ex.Sprite;
+// }
 
-export interface IHash2 {
-  [details: string]: ex.Vector;
-}
+// export interface IHash2 {
+//   [details: string]: ex.Vector;
+// }
 
 const img_width = 100;
 const img_height = 100;
@@ -27,13 +27,13 @@ const offset = ex.vec(0, 0);
 export class Wall extends ActorGraphic {
 // export class Wall extends ex.Actor {
   level: Level
-  type: string
+  type: keyof IHash
 
   constructor(args: {
     level: Level,
     name: string,
     pos: ex.Vector,
-    type: string,
+    type: keyof IHash,
     // collisionType?: ex.CollisionType,
     // collisionGroup?: ex.CollisionGroup,
   }) {
@@ -121,7 +121,7 @@ wallVN.load();
 dark_table_1.load();
 
 
-const image_list: IHash = {
+const image_list = {
   "": new ex.Sprite({
     image: wall,
     destSize: {
@@ -176,6 +176,12 @@ const image_list: IHash = {
   }),
 
 }
+
+export type IHash = typeof image_list;
+
+export type IHash2 = {
+  [key in keyof IHash]: ex.Vector;
+};
 
 const collider_list: IHash2 = {
   "": ex.vec(col_width, col_height),
