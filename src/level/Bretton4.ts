@@ -17,21 +17,31 @@ export class Bretton4 extends Level {
 
   onInitialize(engine: Engine): void {
     super.onInitialize(engine);
-    for (let x = 100; x < 300; x += 50) {
-      this.addItem(new Food({
-        level: this,
-        pos: vec(x, 900)
-      }));
-    }
+    // for (let x = 100; x < 300; x += 50) {
+    //   this.addItem(new Food({
+    //     level: this,
+    //     pos: vec(x, 900)
+    //   }));
+    // }
     this.addGhost(new HungryGhost({
       level: this,
-      pos: vec(700, 700),
-      speed: 50
+      pos: vec(600, 900),
+      speed: 100
     }));
     this.addItem(new FoodMachine({
       level: this,
-      pos: vec(800, 900),
+      pos: vec(700, 900),
       active: true
+    }));
+    this.addItem(new PressurePlate({
+      level: this,
+      pos: vec(900, 900),
+      onActivate: () => {
+        this.setExitActivated(true);
+      },
+      onDeactivate: () => {
+        this.setExitActivated(false);
+      }
     }));
   }
 

@@ -13,7 +13,8 @@ export class PressurePlate extends Item {
   constructor(args: {
     level: Level,
     pos: Vector,
-    onActivate: () => void
+    onActivate?: () => void,
+    onDeactivate?: () => void
   }) {
     super({
       ...args,
@@ -42,18 +43,23 @@ export class PressurePlate extends Item {
 
     this.on('collisionstart', e => {
       if (isWeighted(e.other)) {
+        const prevPressure = this.pressure;
         this.pressure += e.other.weight;
         this.updateGraphics();
-        if (this.pressure >= activationPressure) {
-          args.onActivate();
+        if (prevPressure < activationPressure && this.pressure >= activationPressure) {
+          args.onActivate?.();
         }
       }
     });
 
     this.on('collisionend', e => {
       if (isWeighted(e.other)) {
+        const prevPressure = this.pressure;
         this.pressure -= e.other.weight;
         this.updateGraphics();
+        if (prevPressure >= activationPressure && this.pressure < activationPressure) {
+          args.onDeactivate?.();
+        }
       }
     });
   }
