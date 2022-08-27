@@ -5,5 +5,5 @@ export interface Weighted extends Actor {
 }
 
 export function isWeighted(x: Actor): x is Weighted {
-  return 'weight' in x;
+  return 'weight' in x && x instanceof Actor;
 }
