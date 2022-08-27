@@ -12,6 +12,7 @@ import { Henry3 } from './level/Henry3';
 import { Death } from './level/Death';
 import { Henry4 } from './level/Henry4';
 import { Henry5 } from './level/Henry5';
+import { Bretton2 } from './level/Bretton2';
 
 // engine
 const engine = new ex.Engine({
@@ -38,6 +39,7 @@ engine.add('Henry5', new Henry5());
 engine.add('Jae1', new Jae1());
 engine.add('Jae2', new Jae2());
 engine.add('Bretton1', new Bretton1());
+engine.add('Bretton2', new Bretton2());
 engine.add('Calvin1', new Calvin1());
 // Start the engine
 engine.start(loader).then(() => {

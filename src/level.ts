@@ -7,16 +7,17 @@ import { Wall } from './wall';
 import { Accessory } from './accessories/accessory';
 import { LevelSelector } from './level/LevelSelector';
 import { images } from './resources';
+import { Damageable } from './Damageable';
 
 export class Level extends LevelSelector {
   // player
   player: Player;
   // ghosts
-  ghosts: Array<Ghost>;
+  ghosts: Set<Ghost>;
   // items
-  items: Array<Item>;
-  walls: Array<Wall>;
-  accessories: Array<Accessory>;
+  items: Set<Item>;
+  walls: Set<Wall>;
+  accessories: Set<Accessory>;
 
   // whether the level is lit
   lit: boolean; // TODO: rename to "isLighted"
@@ -34,11 +35,11 @@ export class Level extends LevelSelector {
     });
     this.add(this.player);
     // init ghosts
-    this.ghosts = new Array();
+    this.ghosts = new Set();
     // init items
-    this.items = new Array();
-    this.walls = new Array();
-    this.accessories = new Array();
+    this.items = new Set();
+    this.walls = new Set();
+    this.accessories = new Set();
 
     this.lit = args.lit ?? true;
   }
@@ -86,17 +87,17 @@ export class Level extends LevelSelector {
   // utility functions for interacting with the state
 
   addGhost(ghost: Ghost): void {
-    this.ghosts.push(ghost);
+    this.ghosts.add(ghost);
     this.add(ghost);
   }
 
   addItem(item: Item): void {
-    this.items.push(item);
+    this.items.add(item);
     this.add(item);
   }
 
   addWall(wall: Wall): void {
-    this.walls.push(wall);
+    this.walls.add(wall);
     this.add(wall);
   }
 
@@ -151,15 +152,25 @@ export class Level extends LevelSelector {
   }
 
   addAccessory(accessory: Accessory): void {
-    this.accessories.push(accessory);
+    this.accessories.add(accessory);
     this.add(accessory);
   }
 
-  damagePlayer(damage: number): void {
-    this.player.health = Math.max(this.player.health - damage, 0);
-    // TODO: update healthbar
-    if (this.player.health <= 0) {
-      this.killPlayer();
+  // damagePlayer(damage: number): void {
+  //   this.player.health = Math.max(this.player.health - damage, 0);
+  //   // TODO: update healthbar
+  //   if (this.player.health <= 0) {
+  //     this.killPlayer();
+  //   }
+  // }
+
+  damage(target: Damageable, amount: number) {
+    amount = Math.min(target.health, amount);
+    target.health -= amount;
+    target.onDamage?.(amount);
+    if (target.health <= 0) {
+      target.kill();
+      target.onDie?.();
     }
   }
 

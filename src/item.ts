@@ -24,7 +24,6 @@ export class Item extends ActorGraphic {
     });
     this.level = args.level;
     this.points = args.points;
-    this.color = args.color;
   }
 
   onInitialize(_engine: ex.Engine): void {

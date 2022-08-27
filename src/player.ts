@@ -5,11 +5,12 @@ import { playerG } from './collision';
 import { MovementController } from './MovementController';
 import { Activator } from './Activator';
 import { ActorGraphic } from './ActorGraphic';
+import { Damageable } from './Damageable';
 
 const points = [ex.vec(-25, -25), ex.vec(25, -25), ex.vec(25, 25), ex.vec(-25, 25)];
 const offset = ex.vec(0, 0);
 
-export class Player extends ActorGraphic {
+export class Player extends ActorGraphic implements Damageable {
   level: Level;
   health: number;
 
@@ -42,5 +43,13 @@ export class Player extends ActorGraphic {
     if (engine.input.keyboard.isHeld(ex.Input.Keys.R)) {
       this.level.reset();
     }
+  }
+
+  onDamage(amount: number) {
+    // TODO: update healthbar
+  }
+
+  onDie() {
+    this.level.killPlayer();
   }
 }
