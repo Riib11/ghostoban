@@ -221,6 +221,9 @@ const img_lamp_on = new ex.ImageSource('./src/resources/lamp_on.png')
 img_lamp.load();
 img_lamp_on.load();
 
+const test = new ex.ImageSource('./src/resources/left.gif')
+test.load();
+
 const image_list: IHash = {
   "lamp": new ex.Sprite({
     image: img_lamp,
@@ -234,6 +237,13 @@ const image_list: IHash = {
     destSize: {
       width: 50,
       height: 40,
+    },
+  }),
+  "test": new ex.Sprite({
+    image: test,
+    destSize: {
+      width: 100,
+      height: 100,
     },
   }),
 
