@@ -18,6 +18,7 @@ const engine = new ex.Engine({
 
 // levels are added in `levels` in `./levels.ts`
 addLevels(engine);
+
 // Start the engine
 engine.start(loader).then(() => {
   console.log('game start');
