@@ -111,7 +111,31 @@ export class Level extends LevelSelector {
     this.add(wall);
   }
 
+  addWallLineH(pos: ex.Vector, count: number) {
+    for (let i = 0; i < count; i += 1) {
+      this.addWall(new Wall({
+        level: this,
+        name: "wall",
+        pos: ex.vec(pos.x + i * Wall.getSpacer(), pos.y),
+        type: "N",
+      }));
+    }
+  }
+  
+  addWallLineV(pos: ex.Vector, count: number) {
+    for (let i = 0; i < count; i += 1) {
+      this.addWall(new Wall({
+        level: this,
+        name: "wall",
+        pos: ex.vec(pos.x, pos.y + i * Wall.getSpacer()),
+        type: "VN",
+      }));
+    }
+  }
+  
   addWallLine(pos: ex.Vector, countX: number, countY: number) {
+    //use addWallLineH and addWallLineV
+    return
     if (countY == 0) {
       if (countX == 1) {
         this.addWall(new Wall({

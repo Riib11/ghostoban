@@ -12,7 +12,8 @@ export class Jae1 extends Level {
     });
   }
 
-  onInitialize(_engine: ex.Engine): void {
+  onInitialize(engine: ex.Engine): void {
+    super.onInitialize(engine);
     // do stuff to setup level
     this.addGhost(new TelekinesisGhost({
       level: this,

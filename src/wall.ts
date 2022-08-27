@@ -16,7 +16,8 @@ const img_height = 100;
 const col_width = 50;
 const col_height = 50;
 
-const wall_space = 75;
+// const wall_space = 75;//this was wall space for LR walls
+const wall_space = 100;
 
 // const points = [ex.vec(-col_width, -col_height), ex.vec(col_width, -col_height), ex.vec(col_width, col_height), ex.vec(-col_width, col_height)];
 // const col_w = collider_list[];
@@ -104,12 +105,18 @@ const wallLR = new ex.ImageSource('./src/resources/wallLR.png')
 const wallL = new ex.ImageSource('./src/resources/wallL.png')
 const wallR = new ex.ImageSource('./src/resources/wallR.png')
 
+const wallN = new ex.ImageSource('./src/resources/wallN.png')
+const wallVN = new ex.ImageSource('./src/resources/wallVN.png')
+
 const dark_table_1 = new ex.ImageSource('./src/resources/dark_table_1.png')
 
 wall.load();
 wallLR.load();
 wallL.load();
 wallR.load();
+
+wallN.load();
+wallVN.load();
 
 dark_table_1.load();
 
@@ -144,6 +151,22 @@ const image_list: IHash = {
     },
   }),
   
+  "N": new ex.Sprite({
+    image: wallN,
+    destSize: {
+      width: img_width,
+      height: img_height,
+    },
+  }),
+  "VN": new ex.Sprite({
+    image: wallVN,
+    destSize: {
+      width: img_width,
+      height: img_height,
+    },
+  }),
+  
+  
   "dark_table_1": new ex.Sprite({
     image: dark_table_1,
     destSize: {
@@ -159,6 +182,9 @@ const collider_list: IHash2 = {
   "LR": ex.vec(col_width, col_height),
   "L": ex.vec(col_width, col_height),
   "R": ex.vec(col_width, col_height),
+  
+  "N": ex.vec(col_width, col_height),
+  "VN": ex.vec(col_width, col_height),
   
   "dark_table_1": ex.vec(50, 50),
 }

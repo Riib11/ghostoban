@@ -12,7 +12,8 @@ export class Jae2 extends Level {
     });
   }
 
-  onInitialize(_engine: ex.Engine): void {
+  onInitialize(engine: ex.Engine): void {
+    super.onInitialize(engine);
     // do stuff to setup level
     this.addGhost(new TelekinesisGhost({
       level: this,
@@ -41,8 +42,11 @@ export class Jae2 extends Level {
     //   type: "L",
     // }));
     
-    this.addWallLine(ex.vec(500, 400), 3, 0);
-    this.addWallLine(ex.vec(500, 550), 0, 6);
+    // this.addWallLine(ex.vec(500, 400), 3, 0);
+    // this.addWallLine(ex.vec(500, 550), 0, 6);
+    
+    this.addWallLineH(ex.vec(500, 400), 3);
+    this.addWallLineV(ex.vec(700, 200), 2);
     
     // this.addWall(new Wall({
     //   level: this,
@@ -50,6 +54,31 @@ export class Jae2 extends Level {
     //   pos: ex.vec(500, 550),
     //   type: "LR",
     // }));
+    
+    this.addWall(new Wall({
+      level: this,
+      name: "wall",
+      pos: ex.vec(600, 850),
+      type: "N",
+    }));
+    this.addWall(new Wall({
+      level: this,
+      name: "wall",
+      pos: ex.vec(600+100, 850),
+      type: "N",
+    }));
+    this.addWall(new Wall({
+      level: this,
+      name: "wall",
+      pos: ex.vec(600+100, 850-100),
+      type: "VN",
+    }));
+    this.addWall(new Wall({
+      level: this,
+      name: "wall",
+      pos: ex.vec(600+100, 850-200),
+      type: "VN",
+    }));
     
     this.addWall(new Wall({
       level: this,
