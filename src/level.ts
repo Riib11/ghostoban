@@ -22,15 +22,15 @@ export class Level extends LevelSelector {
   walls: Set<Wall>;
   accessories: Set<Accessory>;
 
-  // whether the level is lit
-  lit: boolean; // TODO: rename to "isLighted"
+  // whether the level is isLit
+  isLit: boolean; // TODO: rename to "isLighted"
 
   // constructor
   constructor(args: {
     player_pos: ex.Vector,
     exit_pos: ex.Vector,
     exit_activated?: boolean,
-    lit?: boolean
+    isLit?: boolean
   }) {
     super();
     // init player
@@ -52,11 +52,11 @@ export class Level extends LevelSelector {
     this.walls = new Set();
     this.accessories = new Set();
 
-    this.lit = args.lit ?? true;
+    this.isLit = args.isLit ?? true;
   }
 
   onInitialize(engine: ex.Engine): void {
-    this.setLit(this.lit);
+    this.setLit(this.isLit);
 
     const floorScale = 2;
     const sprite = images.floor.toSprite();
@@ -87,7 +87,7 @@ export class Level extends LevelSelector {
     // this.walls = new Array();
     // this.accessories = new Array();
     // 
-    // this.lit = args.lit ?? true;
+    // this.isLit = args.isLit ?? true;
     // this.onInitialize();
   }
 
@@ -95,7 +95,7 @@ export class Level extends LevelSelector {
     return Math.sqrt((pos1.x - pos2.x) ** 2 + (pos1.y - pos2.y) ** 2)
   }
 
-  // utility functions for interacting with the state
+  // utiisLity functions for interacting with the state
 
   addGhost(ghost: Ghost): void {
     this.ghosts.add(ghost);
@@ -111,12 +111,12 @@ export class Level extends LevelSelector {
     this.walls.add(wall);
     this.add(wall);
   }
-  
+
   addSpike(spikes: Spikes): void {
     //no spikes array obj needed yet
     this.add(spikes);
   }
-  
+
   addSpikes(pos: ex.Vector, countX: number, countY: number, isHollow: boolean = false) {
     // addSpikes
     for (let i = 0; i < countY; i += 1) {
@@ -141,7 +141,7 @@ export class Level extends LevelSelector {
       }));
     }
   }
-  
+
   addWallLineV(pos: ex.Vector, count: number) {
     for (let i = 0; i < count; i += 1) {
       this.addWall(new Wall({
@@ -152,7 +152,7 @@ export class Level extends LevelSelector {
       }));
     }
   }
-  
+
   addWallLine(pos: ex.Vector, countX: number, countY: number) {
     //use addWallLineH and addWallLineV
     return
@@ -246,9 +246,9 @@ export class Level extends LevelSelector {
     item.setCharged(charged);
   }
 
-  setLit(lit: boolean) {
-    this.lit = lit;
-    this.engine.backgroundColor = this.lit ? ex.Color.White : ex.Color.Gray;
+  setLit(isLit: boolean) {
+    this.isLit = isLit;
+    this.engine.backgroundColor = this.isLit ? ex.Color.White : ex.Color.Gray;
   }
 
   setItemPos(item: Item, pos: ex.Vector) {

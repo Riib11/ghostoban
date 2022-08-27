@@ -8,7 +8,7 @@ const offset = ex.vec(0, 0);
 export default class StalkerGhost1 extends Ghost {
 
   /*
-  A ghost the follows the player when the level is not lit. If the ghost is
+  A ghost the follows the player when the level is not isLit. If the ghost is
   colliding with the player, then kills player.
   */
 
@@ -30,14 +30,14 @@ export default class StalkerGhost1 extends Ghost {
 
   onInitialize(_engine: ex.Engine): void {
     this.on('collisionstart', evt => {
-      if (!this.level.lit && evt.other === this.level.player) {
+      if (!this.level.isLit && evt.other === this.level.player) {
         this.level.killPlayer();
       }
     })
   }
 
   onPreUpdate(_engine: ex.Engine, _delta: number): void {
-    if (!this.level.lit) {
+    if (!this.level.isLit) {
       // if its dark, then follow player
       this.setVelTowards(this.level.player.pos);
 
