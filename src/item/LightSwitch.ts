@@ -27,7 +27,6 @@ export class LightSwitch extends Item {
       points: this.points,
       key: ex.Input.Keys.E,
       onChangeActivated: (isActivated) => {
-        console.log("setLit", isActivated)
         this.level.setLit(isActivated);
         this.color = computeColor(isActivated);
       },

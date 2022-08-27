@@ -30,14 +30,14 @@ export default class StalkerGhost1 extends Ghost {
 
   onInitialize(_engine: ex.Engine): void {
     this.on('collisionstart', evt => {
-      if (!this.level.isLit && evt.other === this.level.player) {
+      if (!this.level.lighting.isLit && evt.other === this.level.player) {
         this.level.killPlayer();
       }
     })
   }
 
   onPreUpdate(_engine: ex.Engine, _delta: number): void {
-    if (!this.level.isLit) {
+    if (!this.level.lighting.isLit) {
       // if its dark, then follow player
       this.setVelTowards(this.level.player.pos);
 

@@ -10,6 +10,8 @@ import { LevelSelector } from './level/LevelSelector';
 import { images } from './resources';
 import { Damageable } from './Damageable';
 import { Exit } from './Exit';
+import { LevelLighting } from './environment/LevelLighting';
+import { LevelFloor } from './environment/LevelFloor';
 
 export class Level extends LevelSelector {
   // player
@@ -21,9 +23,10 @@ export class Level extends LevelSelector {
   items: Set<Item>;
   walls: Set<Wall>;
   accessories: Set<Accessory>;
-
-  // whether the level is isLit
-  isLit: boolean; // TODO: rename to "isLighted"
+  // lighting
+  lighting: LevelLighting;
+  // floor
+  floor: LevelFloor;
 
   // constructor
   constructor(args: {
@@ -33,45 +36,45 @@ export class Level extends LevelSelector {
     isLit?: boolean
   }) {
     super();
-    // init player
+
+    // player
     this.player = new Player({
       level: this,
       pos: args.player_pos
     });
     this.add(this.player);
+
+    // exit
     this.exit = new Exit({
       level: this,
       pos: args.exit_pos,
       activated: args.exit_activated
     });
     this.add(this.exit);
+
     // init ghosts
     this.ghosts = new Set();
+
     // init items
     this.items = new Set();
+
+    // walls
     this.walls = new Set();
+
+    // accessories
     this.accessories = new Set();
 
-    this.isLit = args.isLit ?? true;
+    // lighting
+    this.lighting = new LevelLighting({ isLit: args.isLit });
+    this.add(this.lighting);
+
+    // floor
+    this.floor = new LevelFloor({ level: this });
+    this.add(this.floor);
   }
 
   onInitialize(engine: ex.Engine): void {
-    this.setLit(this.isLit);
-
-    const floorScale = 2;
-    const sprite = images.floor.toSprite();
-    sprite.scale = ex.vec(floorScale, floorScale);
-    const tilemap = new ex.TileMap({
-      pos: ex.vec(0, 0),
-      rows: Math.ceil(1000 / sprite.height),
-      columns: Math.ceil(1000 / sprite.width),
-      tileWidth: sprite.width,
-      tileHeight: sprite.height,
-    });
-    for (const tile of tilemap.tiles) {
-      tile.addGraphic(sprite);
-    }
-    this.add(tilemap);
+    super.onInitialize(engine);
   }
 
   public reset() {
@@ -247,8 +250,7 @@ export class Level extends LevelSelector {
   }
 
   setLit(isLit: boolean) {
-    this.isLit = isLit;
-    this.engine.backgroundColor = this.isLit ? ex.Color.White : ex.Color.Gray;
+    this.lighting.setLit(isLit);
   }
 
   setItemPos(item: Item, pos: ex.Vector) {
