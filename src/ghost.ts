@@ -49,5 +49,6 @@ export class Ghost extends ex.Actor {
 
   reset(): void {
     this.pos = this.pos_origin;
+    this.actions.clearActions();
   }
 }

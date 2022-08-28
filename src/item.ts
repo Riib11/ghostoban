@@ -47,5 +47,6 @@ export class Item extends ActorGraphic {
 
   reset(): void {
     this.pos = this.pos_origin;
+    this.actions.clearActions();
   }
 }
