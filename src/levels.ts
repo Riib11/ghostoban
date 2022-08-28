@@ -23,7 +23,7 @@ import { Bretton6 } from './level/Bretton6';
 import { Bretton7 } from './level/Bretton7';
 import { End } from './level/End';
 
-export const levels = {
+export var levels = {
   Main: new Main(),
   Death: new Death(),
   Win: new Win(),
@@ -55,10 +55,13 @@ export function addLevels(engine: ex.Engine) {
   }
 }
 
-export const progress: (keyof (typeof levels))[] = [
+type levelname = keyof (typeof levels)
+
+export const progress: levelname[] = [
   'Main',
+  'Bretton5', // pressure plate (tutorial)
   'Jae3', // cleaning 
-  'Bretton5', // hunry (tutorial)
+  'Bretton3', // hunry (tutorial)
   'Bretton4', // hungry
   'TutorialTelekinesis', // tele (tutorial)
   'Henry6', // tele
@@ -71,6 +74,10 @@ export var progressIndex: number = 0;
 
 export function goToCurrentLevel(engine: ex.Engine) {
   engine.goToScene(progress[progressIndex]);
+}
+
+export function resetThenGoToLevel(engine: ex.Engine, name: levelname) {
+  // TODO
 }
 
 export function incrementProgress() {
