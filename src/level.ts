@@ -15,6 +15,7 @@ import { LevelLighting } from './environment/LevelLighting';
 import { LevelFloor } from './environment/LevelFloor';
 import { title, ui } from './ui';
 import { Color, Font, FontUnit, Label, TextAlign, vec } from 'excalibur';
+import { goToCurrentLevel, incrementProgress } from './levels';
 
 export class Level extends LevelSelector {
   name: string;
@@ -128,7 +129,26 @@ export class Level extends LevelSelector {
   onActivate(context: ex.SceneActivationContext<unknown>): void {
     super.onActivate(context);
     this.reset();
+
     title.innerHTML = this.name;
+
+
+    const btn_progress = document.createElement('button');
+    btn_progress.innerHTML = "go to next level";
+    btn_progress.onclick = (e) => {
+      e.preventDefault();
+      incrementProgress();
+      goToCurrentLevel(this.engine);
+    }
+    ui.appendChild(btn_progress);
+
+    const btn_reset = document.createElement('button');
+    btn_reset.innerHTML = "restart level";
+    btn_reset.onclick = (e) => {
+      e.preventDefault();
+      goToCurrentLevel(this.engine);
+    }
+    ui.appendChild(btn_reset);
   }
 
   static getDistance(pos1: ex.Vector, pos2: ex.Vector): number {

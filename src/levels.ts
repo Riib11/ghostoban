@@ -57,13 +57,13 @@ export function addLevels(engine: ex.Engine) {
 
 export const progress: (keyof (typeof levels))[] = [
   'Main',
-  'Bretton6', //  stalker 1
   'Jae3', // cleaning 
   'Bretton5', // hunry (tutorial)
   'Bretton4', // hungry
   'TutorialTelekinesis', // tele (tutorial)
   'Henry6', // tele
-  'Bretton7', //  stalker 1
+  'Bretton6', //  stalker 1
+  'Bretton7', //  stalker 2
   'End',
 ]
 
