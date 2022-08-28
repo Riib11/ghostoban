@@ -16,7 +16,7 @@ export class Exit extends Actor {
       radius: 50,
       color: Color.White,
       collisionGroup: CollisionGroupManager.groupByName('player'),
-      collisionType: CollisionType.Passive,
+      collisionType: CollisionType.Fixed,
       z: 10000
     });
 
