@@ -57,6 +57,9 @@ const television_old = new ex.ImageSource('./src/resources/television_old.png')
 const lamp = new ex.ImageSource('./src/resources/lamp.png')
 const lamp_on = new ex.ImageSource('./src/resources/lamp_on.png')
 const lamp_tall = new ex.ImageSource('./src/resources/lamp_tall.png')
+const counter_white = new ex.ImageSource('./src/resources/counter_white.png')
+const fridge = new ex.ImageSource('./src/resources/fridge.png')
+const burner = new ex.ImageSource('./src/resources/burner.png')
 
 wall.load();
 wallLR.load();
@@ -83,6 +86,9 @@ television_old.load();
 lamp.load();
 lamp_on.load()
 lamp_tall.load();
+counter_white.load();
+fridge.load();
+burner.load();
 
 export const image_list: IHash = {
   "": new ex.Sprite({
@@ -249,7 +255,27 @@ export const image_list: IHash = {
       height: 100,
     },
   }),
-  
+  "counter_white": new ex.Sprite({
+    image: counter_white,
+    destSize: {
+      width: 125,
+      height: 75,
+    },
+  }),
+  "fridge": new ex.Sprite({
+    image: fridge,
+    destSize: {
+      width: 75,
+      height: 125,
+    },
+  }),
+  "burner": new ex.Sprite({
+    image: burner,
+    destSize: {
+      width: 75,
+      height: 75,
+    },
+  }),
   
 }
 
@@ -279,8 +305,10 @@ export const collider_list: IHash2 = {
   "lamp": ex.vec(5, 5),
   "lamp_on": ex.vec(5, 5),
   "lamp_tall": ex.vec(25, 25),
+  "counter_white": ex.vec(50, 25),
+  "fridge": ex.vec(25, 35),
+  "burner": ex.vec(30, 25),
 }
-
 
 
 
