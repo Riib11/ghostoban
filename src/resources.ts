@@ -84,52 +84,7 @@ lamp.load();
 lamp_on.load()
 lamp_tall.load();
 
-export const image_list: IHash = {
-  "": new ex.Sprite({
-    image: wall,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  "LR": new ex.Sprite({
-    image: wallLR,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  "L": new ex.Sprite({
-    image: wallL,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  "R": new ex.Sprite({
-    image: wallR,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  
-  "N": new ex.Sprite({
-    image: wallN,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  "VN": new ex.Sprite({
-    image: wallVN,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  
-  
+export const image_list_non_walls: IHash = {
   "dark_table_1": new ex.Sprite({
     image: dark_table_1,
     destSize: {
@@ -249,8 +204,54 @@ export const image_list: IHash = {
       height: 100,
     },
   }),
+}
+
+export const image_list: IHash = {
+  "": new ex.Sprite({
+    image: wall,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
+  "LR": new ex.Sprite({
+    image: wallLR,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
+  "L": new ex.Sprite({
+    image: wallL,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
+  "R": new ex.Sprite({
+    image: wallR,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
   
+  "N": new ex.Sprite({
+    image: wallN,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
+  "VN": new ex.Sprite({
+    image: wallVN,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
   
+  ...image_list_non_walls
 }
 
 export const collider_list: IHash2 = {
