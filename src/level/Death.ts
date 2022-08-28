@@ -30,8 +30,9 @@ export class Death extends ex.Scene {
     const btn = document.createElement('button');
     btn.innerHTML = "restart level";
     btn.onclick = (e) => {
-      e.preventDefault();
-      goToCurrentLevel(this.engine);
+      location.reload();
+      // e.preventDefault();
+      // goToCurrentLevel(this.engine);
     }
     ui.appendChild(btn);
   }
