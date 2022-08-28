@@ -35,4 +35,8 @@ export class Death extends ex.Scene {
     }
     ui.appendChild(btn);
   }
+
+  onDeactivate(_context: ex.SceneActivationContext<undefined>): void {
+    ui.innerHTML = '';
+  }
 }

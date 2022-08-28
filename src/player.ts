@@ -107,6 +107,7 @@ export class Player extends ActorGraphic implements Damageable, Weighted {
   }
 
   reset(): void {
+    this.health = 100;
     this.pos = this.pos_origin;
   }
 }

@@ -130,6 +130,11 @@ export class Accessory extends Item {
 
   }//floatAnimation
 
+  reset() {
+    super.reset();
+    this.is_float = false;
+  }
+
 
 }
 
@@ -153,12 +158,12 @@ export class ElectricalAccessory extends Accessory {
 
     this.animation_state_electric = 0;
     this.is_on = false;
-    
+
   }//constructer
 
   public changeSprite(image_name: string) {
     super.changeSprite(image_name);
-    
+
     const flicker = new ex.Animation({
       frames: [
         {
@@ -215,6 +220,12 @@ export class ElectricalAccessory extends Accessory {
     } else {
       this.graphics.use(image_list[this.image_name]);
     }
+  }
+
+  reset() {
+    super.reset();
+    this.is_on = false;
+    this.is_float = false;
   }
 }
 
