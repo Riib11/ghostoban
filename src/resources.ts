@@ -277,7 +277,7 @@ export const image_list: IHash = {
       height: img_height_wall,
     },
   }),
-  
+  ...image_list_non_walls,
 }
 
 export const collider_list: IHash2 = {
