@@ -34,7 +34,7 @@ export class Player extends ActorGraphic implements Damageable {
     });
     this.level = args.level;
     this.health = 100;
-    this.addChild(new PlayerController({ player: this, speed: 500 }));
+    this.addChild(new PlayerController({ player: this, speed: 300 }));
     this.addChild(new Activator({ radius: 50, }));
     this.direction = 1;
   }

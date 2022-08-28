@@ -2,6 +2,8 @@ import * as ex from 'excalibur';
 import { Level } from './level';
 import { ghostG } from './collision';
 
+const DEBUG_GHOSTS = false;
+
 export class Ghost extends ex.Actor {
   level: Level;
   points: ex.Vector[];
@@ -27,11 +29,12 @@ export class Ghost extends ex.Actor {
     this.points = args.points;
     this.speed = args.speed;
 
-    // TMP: this is probably just for debugging
-    this.graphics.use(new ex.Polygon({
-      points: this.points,
-      color: args.color,
-    }));
+    if (DEBUG_GHOSTS) {
+      this.graphics.use(new ex.Polygon({
+        points: this.points,
+        color: args.color,
+      }));
+    }
   }
 
   onInitialize(_engine: ex.Engine): void {

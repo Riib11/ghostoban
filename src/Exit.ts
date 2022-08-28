@@ -2,7 +2,7 @@ import { Actor, CollisionGroupManager, CollisionType, Color, Vector } from "exca
 import { ActorGraphic } from "./ActorGraphic";
 import { Level } from "./level";
 
-export class Exit extends ActorGraphic {
+export class Exit extends Actor {
 
   activated: boolean;
 
@@ -16,7 +16,8 @@ export class Exit extends ActorGraphic {
       radius: 50,
       color: Color.White,
       collisionGroup: CollisionGroupManager.groupByName('player'),
-      collisionType: CollisionType.Passive
+      collisionType: CollisionType.Passive,
+      z: 10000
     });
 
     this.activated = args.activated ?? false;

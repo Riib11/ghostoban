@@ -1,14 +1,17 @@
 import { CollisionGroupManager, CollisionType, Color, Font, FontUnit, Label, TextAlign, vec, Vector } from "excalibur";
 import { Item } from "../item";
 import { Level } from "../level";
-import { isWeighted } from "../Weighted";
+import { isWeighted, Weighted } from "../Weighted";
 
 const activationPressure = 20;
 
 export class PressurePlate extends Item {
 
   pressure = 0;
+  weighteds = new Set<Weighted>();
   label: Label;
+  onActivate?: () => void;
+  onDeactivate?: () => void;
 
   constructor(args: {
     level: Level,
@@ -43,25 +46,30 @@ export class PressurePlate extends Item {
 
     this.on('collisionstart', e => {
       if (isWeighted(e.other)) {
-        const prevPressure = this.pressure;
-        this.pressure += e.other.weight;
-        this.updateGraphics();
-        if (prevPressure < activationPressure && this.pressure >= activationPressure) {
-          args.onActivate?.();
-        }
+        this.weighteds.add(e.other);
       }
     });
 
     this.on('collisionend', e => {
       if (isWeighted(e.other)) {
-        const prevPressure = this.pressure;
-        this.pressure -= e.other.weight;
-        this.updateGraphics();
-        if (prevPressure >= activationPressure && this.pressure < activationPressure) {
-          args.onDeactivate?.();
-        }
+        this.weighteds.delete(e.other);
       }
     });
+
+    this.onActivate = args.onActivate;
+    this.onDeactivate = args.onDeactivate;
+  }
+
+  onPreUpdate() {
+    const prevPressure = this.pressure;
+    this.pressure = [...this.weighteds].reduce((acc, w) => acc + w.weight, 0);
+    this.updateGraphics();
+    if (prevPressure < activationPressure && this.pressure >= activationPressure) {
+      this.onActivate?.();
+    }
+    if (prevPressure >= activationPressure && this.pressure < activationPressure) {
+      this.onDeactivate?.();
+    }
   }
 
   private updateGraphics() {

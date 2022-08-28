@@ -20,6 +20,7 @@ export class Food extends Item implements Damageable {
       collisionGroup: CollisionGroupManager.groupByName('player'),
       color: Color.Magenta
     });
+    this.set_z_offset(1000);
   }
 
   onDamage(amount: number) {
