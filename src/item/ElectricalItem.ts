@@ -21,12 +21,12 @@ export class ElectricalItem extends Item {
     });
     this.charged = args.charged;
 
-    this.on('collisionstart', (evt: ex.CollisionStartEvent) => {
-      let other = evt.other;
-      if (other instanceof Player) {
-        this.setCharged(!this.charged)
-      }
-    });
+    // this.on('collisionstart', (evt: ex.CollisionStartEvent) => {
+    //   let other = evt.other;
+    //   if (other instanceof Player) {
+    //     this.setCharged(!this.charged)
+    //   }
+    // });
   }
 
   setCharged(charged: boolean) {

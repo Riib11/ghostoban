@@ -49,7 +49,7 @@ export class CleaningGhost extends Ghost {
       this.origin_pos_items.set(i, { origin_pos: item.pos.clone(), item });
     });
 
-    this.on('collisionstart', evt => {
+    this.on('precollision', evt => {
       const mode = this.mode;
       if (mode.case === 'seeking item') {
         if (mode.item.id === evt.other.id) {

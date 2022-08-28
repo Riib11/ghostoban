@@ -33,7 +33,7 @@ export class Bretton3 extends Level {
     this.addGhost(new HungryGhost({
       level: this,
       pos: vec(900, 900),
-      speed: 50
+      speed: 100
     }));
   }
 

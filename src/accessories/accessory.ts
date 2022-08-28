@@ -239,13 +239,6 @@ const image_list: IHash = {
       height: 40,
     },
   }),
-  "test": new ex.Sprite({
-    image: test,
-    destSize: {
-      width: 100,
-      height: 100,
-    },
-  }),
 
 }
 

@@ -6,6 +6,7 @@ import { PlayerController } from './PlayerController';
 import { Activator } from './Activator';
 import { ActorGraphic } from './ActorGraphic';
 import { Damageable } from './Damageable';
+import { Weighted } from './Weighted';
 
 
 const col_width = 24;
@@ -16,10 +17,11 @@ const col_height = 30;
 const points = [ex.vec(-col_width, -col_height), ex.vec(col_width, -col_height), ex.vec(col_width, col_height), ex.vec(-col_width, col_height)];
 const offset = ex.vec(0, 0);
 
-export class Player extends ActorGraphic implements Damageable {
+export class Player extends ActorGraphic implements Damageable, Weighted {
   level: Level;
   health: number;
   direction: number;
+  weight = 50;
 
   constructor(args: {
     level: Level,

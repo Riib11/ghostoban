@@ -2,10 +2,12 @@ import { CollisionGroupManager, CollisionType, Color, vec, Vector } from "excali
 import { Damageable } from "../Damageable";
 import { Item } from "../item";
 import { Level } from "../level";
+import { Weighted } from "../Weighted";
 
-export class Food extends Item implements Damageable {
+export class Food extends Item implements Damageable, Weighted {
 
   health = 100;
+  weight = 5;
 
   constructor(args: {
     level: Level,
@@ -24,6 +26,7 @@ export class Food extends Item implements Damageable {
   }
 
   onDamage(amount: number) {
+    this.weight -= amount / 20;
     this.color = this.color.lighten(amount / 100);
   }
 

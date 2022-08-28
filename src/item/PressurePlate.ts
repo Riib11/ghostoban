@@ -3,7 +3,7 @@ import { Item } from "../item";
 import { Level } from "../level";
 import { isWeighted, Weighted } from "../Weighted";
 
-const activationPressure = 20;
+const activationPressure = 40;
 
 export class PressurePlate extends Item {
 
