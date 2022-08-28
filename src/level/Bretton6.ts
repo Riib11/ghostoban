@@ -1,7 +1,8 @@
-import { Engine, vec } from "excalibur";
+import { Engine, Input, vec } from "excalibur";
 import { Accessory } from "../accessories/accessory";
 import StalkerGhost1 from "../ghost/StalkerGhost1";
 import { Barrel } from "../item/Barrel";
+import { Button } from "../item/Button";
 import { LightSwitch } from "../item/LightSwitch";
 import { PressurePlate } from "../item/PressurePlate";
 import { Level } from "../level";
@@ -29,11 +30,14 @@ export class Bretton6 extends Level {
         image_name: imageNames[Math.floor(Math.random() * imageNames.length)]
       }));
     }
-    this.addItem(new LightSwitch({
+    this.addItem(new Button({
       level: this,
-      name: 'LightSwitch',
       pos: vec(100, 500),
-      isActivated: false
+      key: Input.Keys.E,
+      isActivated: false,
+      onChangeActivated: isActivated => {
+        this.setLit(isActivated);
+      }
     }));
     this.addGhost(new StalkerGhost1({
       level: this,
