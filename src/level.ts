@@ -152,7 +152,7 @@ export class Level extends LevelSelector {
     ui.appendChild(btn_reset);
 
     const btn_restart = document.createElement('button');
-    btn_restart.innerHTML = "restart everything";
+    btn_restart.innerHTML = "restart game";
     btn_restart.onclick = (e) => {
       localStorage.clear();
       location.reload();
