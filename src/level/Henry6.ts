@@ -113,7 +113,7 @@ export class Henry6 extends Level {
 
     // accessories
 
-    function makeTableLamp(pos: ex.Vector) {
+    function makeTableLamp(pos: ex.Vector, range = 100) {
       level.addWall(new Wall({
         level,
         name: "dark_table_1",
@@ -128,8 +128,10 @@ export class Henry6 extends Level {
         range: 150
       }).set_z_offset(100));
     }
-    makeTableLamp(ex.vec(14, 1));
-    makeTableLamp(ex.vec(14, 14));
+    makeTableLamp(ex.vec(23, 1));
+    makeTableLamp(ex.vec(11, 17));
+    makeTableLamp(ex.vec(15, 1));
+    makeTableLamp(ex.vec(15, 13));
     makeTableLamp(ex.vec(3, 6));
     makeTableLamp(ex.vec(19, 17));
   }
