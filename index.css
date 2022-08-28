@@ -8,11 +8,17 @@ canvas {
  margin: auto;
 }
 
+#title {
+  font-size: 48pt;
+  text-align: center;
+  min-height: calc(48pt + 10px);
+}
+
 #ui {
   max-width: 800px;
 }
 
-#ui .button {
+#ui button {
   font-size: 24pt;
   margin-right: 20px;
   margin-bottom: 20px;

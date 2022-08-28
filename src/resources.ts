@@ -90,52 +90,7 @@ counter_white.load();
 fridge.load();
 burner.load();
 
-export const image_list: IHash = {
-  "": new ex.Sprite({
-    image: wall,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  "LR": new ex.Sprite({
-    image: wallLR,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  "L": new ex.Sprite({
-    image: wallL,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  "R": new ex.Sprite({
-    image: wallR,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  
-  "N": new ex.Sprite({
-    image: wallN,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  "VN": new ex.Sprite({
-    image: wallVN,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  
-  
+export const image_list_non_walls: IHash = {
   "dark_table_1": new ex.Sprite({
     image: dark_table_1,
     destSize: {
@@ -255,6 +210,7 @@ export const image_list: IHash = {
       height: 100,
     },
   }),
+<<<<<<< HEAD
   "counter_white": new ex.Sprite({
     image: counter_white,
     destSize: {
@@ -274,9 +230,56 @@ export const image_list: IHash = {
     destSize: {
       width: 75,
       height: 75,
+=======
+}
+
+export const image_list: IHash = {
+  "": new ex.Sprite({
+    image: wall,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
+  "LR": new ex.Sprite({
+    image: wallLR,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
+  "L": new ex.Sprite({
+    image: wallL,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
+  "R": new ex.Sprite({
+    image: wallR,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
     },
   }),
   
+  "N": new ex.Sprite({
+    image: wallN,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
+  "VN": new ex.Sprite({
+    image: wallVN,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+>>>>>>> d1c8d3c06ef45e13ae16d6ad2a5f4d58d9c08faf
+    },
+  }),
+  
+  ...image_list_non_walls
 }
 
 export const collider_list: IHash2 = {

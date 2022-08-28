@@ -7,6 +7,7 @@ export class Bretton5 extends Level {
 
   constructor() {
     super({
+      name: 'Hungry',
       player_pos: vec(100, 100),
       exit_pos: vec(950, 950)
     });

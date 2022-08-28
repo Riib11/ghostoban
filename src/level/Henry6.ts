@@ -13,6 +13,7 @@ const u = 50;
 export class Henry6 extends Level {
   constructor() {
     super({
+      name: 'Telekinesis as a Distance',
       player_pos: ex.vec(20 * u, 12 * u),
       exit_pos: ex.vec(23 * u, 12 * u)
     });

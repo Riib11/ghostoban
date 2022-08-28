@@ -7,6 +7,7 @@ import { ActorArgs } from "excalibur";
 export class Item extends ActorGraphic {
   level: Level;
   points: ex.Vector[];
+  pos_origin: ex.Vector;
 
   constructor(args: {
     level: Level;
@@ -26,6 +27,7 @@ export class Item extends ActorGraphic {
       }),
       collisionGroup: args.collisionGroup || itemG,
     });
+    this.pos_origin = args.pos.clone();
     this.level = args.level;
     this.points = args.points;
   }
@@ -41,5 +43,10 @@ export class Item extends ActorGraphic {
         })
       );
     }
+  }
+
+  reset(): void {
+    this.pos = this.pos_origin;
+    this.actions.clearActions();
   }
 }

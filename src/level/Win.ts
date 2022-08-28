@@ -1,5 +1,7 @@
 import * as ex from 'excalibur';
 import { Label } from 'excalibur';
+import { goToCurrentLevel, incrementProgress } from '../levels';
+import { ui } from '../ui';
 
 export class Win extends ex.Scene {
   constructor() {
@@ -7,8 +9,6 @@ export class Win extends ex.Scene {
   }
 
   onInitialize(engine: ex.Engine): void {
-    engine.backgroundColor = ex.Color.White;
-
     this.add(new Label({
       text: "WIN",
       pos: ex.vec(500, 500),
@@ -20,5 +20,31 @@ export class Win extends ex.Scene {
         textAlign: ex.TextAlign.Center
       })
     }));
+  }
+
+  onActivate(context: ex.SceneActivationContext<unknown>): void {
+    super.onActivate(context);
+    this.engine.backgroundColor = ex.Color.White;
+
+    const btn_progress = document.createElement('button');
+    btn_progress.innerHTML = "go to next level";
+    btn_progress.onclick = (e) => {
+      e.preventDefault();
+      incrementProgress();
+      goToCurrentLevel(this.engine);
+    }
+    ui.appendChild(btn_progress);
+
+    const btn_reset = document.createElement('button');
+    btn_reset.innerHTML = "restart level";
+    btn_reset.onclick = (e) => {
+      e.preventDefault();
+      goToCurrentLevel(this.engine);
+    }
+    ui.appendChild(btn_reset);
+  }
+
+  onDeactivate(_context: ex.SceneActivationContext<undefined>): void {
+    ui.innerHTML = '';
   }
 }

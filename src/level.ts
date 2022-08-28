@@ -13,8 +13,12 @@ import { Damageable } from './Damageable';
 import { Exit } from './Exit';
 import { LevelLighting } from './environment/LevelLighting';
 import { LevelFloor } from './environment/LevelFloor';
+import { title, ui } from './ui';
+import { Color, Font, FontUnit, Label, TextAlign, vec } from 'excalibur';
+import { goToCurrentLevel, incrementProgress } from './levels';
 
 export class Level extends LevelSelector {
+  name: string;
   // player
   player: Player;
   exit: Exit;
@@ -28,15 +32,19 @@ export class Level extends LevelSelector {
   lighting: LevelLighting;
   // floor
   floor: LevelFloor;
+  healthLabel: Label;
 
   // constructor
   constructor(args: {
+    name?: string
     player_pos: ex.Vector,
     exit_pos: ex.Vector,
     exit_activated?: boolean,
     isLit?: boolean
   }) {
     super();
+
+    this.name = args.name ?? "UNTITLED"
 
     // player
     this.player = new Player({
@@ -72,10 +80,29 @@ export class Level extends LevelSelector {
     // floor
     this.floor = new LevelFloor({ level: this });
     this.add(this.floor);
+
+    this.healthLabel = new Label({
+      text: "Health: " + this.player.health,
+      pos: vec(80, 980),
+      font: new Font({
+        family: 'helvetica',
+        size: 24,
+        unit: FontUnit.Px,
+        textAlign: TextAlign.Center,
+        color: Color.White
+      }),
+      z: Infinity
+    });
+    this.add(this.healthLabel);
   }
 
   onInitialize(engine: ex.Engine): void {
     super.onInitialize(engine);
+  }
+
+  onDeactivate(_context: ex.SceneActivationContext<undefined>): void {
+    title.innerHTML = '';
+    ui.innerHTML = '';
   }
 
   public reset() {
@@ -93,6 +120,35 @@ export class Level extends LevelSelector {
     // 
     // this.isLit = args.isLit ?? true;
     // this.onInitialize();
+
+    this.player.reset();
+    this.items.forEach(item => item.reset());
+    this.ghosts.forEach(ghost => ghost.reset());
+  }
+
+  onActivate(context: ex.SceneActivationContext<unknown>): void {
+    super.onActivate(context);
+    this.reset();
+
+    title.innerHTML = this.name;
+
+
+    const btn_progress = document.createElement('button');
+    btn_progress.innerHTML = "go to next level";
+    btn_progress.onclick = (e) => {
+      e.preventDefault();
+      incrementProgress();
+      goToCurrentLevel(this.engine);
+    }
+    ui.appendChild(btn_progress);
+
+    const btn_reset = document.createElement('button');
+    btn_reset.innerHTML = "restart level";
+    btn_reset.onclick = (e) => {
+      e.preventDefault();
+      goToCurrentLevel(this.engine);
+    }
+    ui.appendChild(btn_reset);
   }
 
   static getDistance(pos1: ex.Vector, pos2: ex.Vector): number {
@@ -265,5 +321,9 @@ export class Level extends LevelSelector {
 
   setItemPos(item: Item, pos: ex.Vector) {
     item.pos = pos;
+  }
+
+  showPlayerHealth(health: number) {
+    this.healthLabel.text = "Health: " + health;
   }
 }

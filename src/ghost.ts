@@ -1,13 +1,13 @@
 import * as ex from 'excalibur';
 import { Level } from './level';
 import { ghostG } from './collision';
-
-const DEBUG_GHOSTS = false;
+import { DEBUG_GHOSTS } from './options';
 
 export class Ghost extends ex.Actor {
   level: Level;
   points: ex.Vector[];
   speed: number;
+  pos_origin: ex.Vector;
 
   constructor(args: {
     level: Level,
@@ -28,6 +28,7 @@ export class Ghost extends ex.Actor {
     this.level = args.level;
     this.points = args.points;
     this.speed = args.speed;
+    this.pos_origin = args.pos.clone();
 
     if (DEBUG_GHOSTS) {
       this.graphics.use(new ex.Polygon({
@@ -44,5 +45,10 @@ export class Ghost extends ex.Actor {
   setVelTowards(pos: ex.Vector) {
     let v = pos.sub(this.pos);
     this.vel = v.normalize().scale(this.speed)
+  }
+
+  reset(): void {
+    this.pos = this.pos_origin;
+    this.actions.clearActions();
   }
 }
