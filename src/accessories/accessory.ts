@@ -20,6 +20,7 @@ export class Accessory extends Item {
   animation_state: number;
   image_name: string;
   is_float: boolean;
+  range: number;
 
   constructor(args: {
     level: Level,
@@ -29,6 +30,7 @@ export class Accessory extends Item {
     // offset: ex.Vector,
     collisionGroup?: ex.CollisionGroup,
     image_name: string,
+    range?: number
   }) {
     super({
       ...args,
@@ -43,6 +45,7 @@ export class Accessory extends Item {
     this.image_name = args.image_name;
     this.animation_state = 0;
     this.is_float = false;
+    this.range = args.range ?? 200;
 
     // this.on('precollision', (evt: ex.PreCollisionEvent) => {
     //   let other = evt.other;
@@ -77,7 +80,7 @@ export class Accessory extends Item {
 
     this.is_float = false;
     this.level.ghosts.forEach(g => {
-      if (Level.getDistance(this.pos, g.pos) <= DETECT_RADIUS) {
+      if (Level.getDistance(this.pos, g.pos) <= this.range) {
         this.is_float = true;
       }
     });
@@ -133,7 +136,7 @@ export class Accessory extends Item {
 export class ElectricalAccessory extends Accessory {
   animation_state_electric: number;
   is_on: boolean;
-  
+
   constructor(args: {
     level: Level,
     name: string,
@@ -146,7 +149,7 @@ export class ElectricalAccessory extends Accessory {
     super({
       ...args
     });
-    
+
     this.animation_state_electric = 0;
     this.is_on = false;
   }//constructer
@@ -156,7 +159,7 @@ export class ElectricalAccessory extends Accessory {
     const flicker = new ex.Animation({
       frames: [
         {
-          graphic: image_list[this.image_name+"_on"],
+          graphic: image_list[this.image_name + "_on"],
           duration: 200,
         },
         {
@@ -164,7 +167,7 @@ export class ElectricalAccessory extends Accessory {
           duration: 600,
         },
         {
-          graphic: image_list[this.image_name+"_on"],
+          graphic: image_list[this.image_name + "_on"],
           duration: 100,
         },
         {
@@ -172,7 +175,7 @@ export class ElectricalAccessory extends Accessory {
           duration: 300,
         },
         {
-          graphic: image_list[this.image_name+"_on"],
+          graphic: image_list[this.image_name + "_on"],
           duration: 100,
         },
         {
@@ -192,17 +195,17 @@ export class ElectricalAccessory extends Accessory {
   onPreUpdate(engine: ex.Engine, delta: number): void {
     // reset vel.x
     super.onPreUpdate(engine, delta);
-    
+
     this.is_on = false;
     this.level.ghosts.forEach(g => {
-      if (g instanceof ElectricityGhost1 && Level.getDistance(this.pos, g.pos) <= DETECT_RADIUS) {
+      if (g instanceof ElectricityGhost1 && Level.getDistance(this.pos, g.pos) <= this.range) {
         this.is_on = true;
       }
     });
-    
+
     this.flickerAnimation();
   }
-  
+
   flickerAnimation() {
     if (this.is_on) {
       this.graphics.use("flicker");
