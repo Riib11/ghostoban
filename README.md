@@ -21,13 +21,13 @@ npm install
 To build and launch the project in developer mode:
 
 ```sh
-npm run buid:dev
+npm run build:dev
 npm run serve:dev
 ```
 
 To build and launch the project in production mode:
 
 ```sh
-npm run buid:prod
+npm run build:prod
 npm run serve:prod
 ```

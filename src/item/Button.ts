@@ -33,6 +33,7 @@ export class Button extends Item {
       points,
       offset,
       collisionType: ex.CollisionType.Fixed,
+      z: 10000
     });
 
     this.graphic_on = args.graphic_on ?? images.button_on.toSprite();

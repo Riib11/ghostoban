@@ -14,6 +14,7 @@ import { Exit } from './Exit';
 import { LevelLighting } from './environment/LevelLighting';
 import { LevelFloor } from './environment/LevelFloor';
 import { title, ui } from './ui';
+import { Color, Font, FontUnit, Label, TextAlign, vec } from 'excalibur';
 
 export class Level extends LevelSelector {
   name: string;
@@ -30,6 +31,7 @@ export class Level extends LevelSelector {
   lighting: LevelLighting;
   // floor
   floor: LevelFloor;
+  healthLabel: Label;
 
   // constructor
   constructor(args: {
@@ -77,6 +79,20 @@ export class Level extends LevelSelector {
     // floor
     this.floor = new LevelFloor({ level: this });
     this.add(this.floor);
+
+    this.healthLabel = new Label({
+      text: "Health: " + this.player.health,
+      pos: vec(80, 980),
+      font: new Font({
+        family: 'helvetica',
+        size: 24,
+        unit: FontUnit.Px,
+        textAlign: TextAlign.Center,
+        color: Color.White
+      }),
+      z: Infinity
+    });
+    this.add(this.healthLabel);
   }
 
   onInitialize(engine: ex.Engine): void {
@@ -285,5 +301,9 @@ export class Level extends LevelSelector {
 
   setItemPos(item: Item, pos: ex.Vector) {
     item.pos = pos;
+  }
+
+  showPlayerHealth(health: number) {
+    this.healthLabel.text = "Health: " + health;
   }
 }

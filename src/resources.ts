@@ -55,6 +55,7 @@ const plant_5 = new ex.ImageSource('./src/resources/plant_5.png')
 const plant_6 = new ex.ImageSource('./src/resources/plant_6.png')
 const television_old = new ex.ImageSource('./src/resources/television_old.png')
 const lamp = new ex.ImageSource('./src/resources/lamp.png')
+const lamp_on = new ex.ImageSource('./src/resources/lamp_on.png')
 const lamp_tall = new ex.ImageSource('./src/resources/lamp_tall.png')
 
 wall.load();
@@ -80,54 +81,10 @@ plant_5.load();
 plant_6.load();
 television_old.load();
 lamp.load();
+lamp_on.load()
 lamp_tall.load();
 
-export const image_list: IHash = {
-  "": new ex.Sprite({
-    image: wall,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  "LR": new ex.Sprite({
-    image: wallLR,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  "L": new ex.Sprite({
-    image: wallL,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  "R": new ex.Sprite({
-    image: wallR,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  
-  "N": new ex.Sprite({
-    image: wallN,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  "VN": new ex.Sprite({
-    image: wallVN,
-    destSize: {
-      width: img_width_wall,
-      height: img_height_wall,
-    },
-  }),
-  
-  
+export const image_list_non_walls: IHash = {
   "dark_table_1": new ex.Sprite({
     image: dark_table_1,
     destSize: {
@@ -233,6 +190,13 @@ export const image_list: IHash = {
       height: 45,
     },
   }),
+  "lamp_on": new ex.Sprite({
+    image: lamp_on,
+    destSize: {
+      width: 50,
+      height: 45,
+    },
+  }),
   "lamp_tall": new ex.Sprite({
     image: lamp_tall,
     destSize: {
@@ -240,8 +204,54 @@ export const image_list: IHash = {
       height: 100,
     },
   }),
+}
+
+export const image_list: IHash = {
+  "": new ex.Sprite({
+    image: wall,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
+  "LR": new ex.Sprite({
+    image: wallLR,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
+  "L": new ex.Sprite({
+    image: wallL,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
+  "R": new ex.Sprite({
+    image: wallR,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
   
+  "N": new ex.Sprite({
+    image: wallN,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
+  "VN": new ex.Sprite({
+    image: wallVN,
+    destSize: {
+      width: img_width_wall,
+      height: img_height_wall,
+    },
+  }),
   
+  ...image_list_non_walls
 }
 
 export const collider_list: IHash2 = {
@@ -268,6 +278,7 @@ export const collider_list: IHash2 = {
   "plant_6": ex.vec(5, 5),
   "television_old": ex.vec(50, 50),
   "lamp": ex.vec(5, 5),
+  "lamp_on": ex.vec(5, 5),
   "lamp_tall": ex.vec(25, 25),
 }
 

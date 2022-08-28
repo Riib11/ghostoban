@@ -30,7 +30,8 @@ export class Activatable extends ex.Component<'activatable'> {
         size: 48,
         unit: ex.FontUnit.Px,
         textAlign: ex.TextAlign.Center
-      })
+      }),
+      z: Infinity
     });
     this.label.graphics.visible = false;
     this.key = args.key

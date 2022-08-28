@@ -98,8 +98,8 @@ export class Player extends ActorGraphic implements Damageable, Weighted {
     }
   }
 
-  onDamage(amount: number) {
-    // TODO: update healthbar
+  onDamage() {
+    this.level.showPlayerHealth(this.health);
   }
 
   onDie() {

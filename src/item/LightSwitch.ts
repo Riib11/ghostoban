@@ -24,6 +24,7 @@ export class LightSwitch extends Item {
       offset,
       collisionType: ex.CollisionType.Fixed,
       color: computeColor(args.isActivated),
+      z: 1000
     })
 
     this.addComponent(
