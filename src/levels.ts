@@ -3,6 +3,7 @@ import { Bretton1 } from './level/Bretton1';
 import { Bretton2 } from './level/Bretton2';
 import { Bretton3 } from './level/Bretton3';
 import { Bretton4 } from './level/Bretton4';
+import { Bretton5 } from './level/Bretton5';
 import { Calvin1 } from './level/Calvin1';
 import { Death } from './level/Death';
 import { Door1 } from './level/Door1';
@@ -36,6 +37,7 @@ export const levels = {
   Bretton2: new Bretton2(),
   Bretton3: new Bretton3(),
   Bretton4: new Bretton4(),
+  Bretton5: new Bretton5(),
   Calvin1: new Calvin1()
 }
 
