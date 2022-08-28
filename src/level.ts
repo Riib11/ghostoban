@@ -5,6 +5,7 @@ import { ElectricalItem } from './item/ElectricalItem';
 import { Player } from './player';
 import { Wall } from './wall';
 import { Spikes } from './Spikes';
+import { MovableObject } from './item/MovableObject';
 import { Accessory } from './accessories/accessory';
 import { LevelSelector } from './level/LevelSelector';
 import { images } from './resources';
@@ -112,6 +113,11 @@ export class Level extends LevelSelector {
 
   removeItem(item: Item) {
     this.items.delete(item);
+  }
+
+  addMovableObject(item: MovableObject): void {
+    this.items.add(item);
+    this.add(item);
   }
 
   addWall(wall: Wall): void {
