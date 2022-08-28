@@ -20,6 +20,7 @@ import { TutorialTelekinesis } from './level/TutorialTelekinesis';
 import { Main } from './level/Main';
 import { Win } from './level/Win';
 import { Bretton6 } from './level/Bretton6';
+import { Bretton7 } from './level/Bretton7';
 
 export const levels = {
   Main: new Main(),
@@ -42,6 +43,7 @@ export const levels = {
   Bretton4: new Bretton4(),
   Bretton5: new Bretton5(),
   Bretton6: new Bretton6(),
+  Bretton7: new Bretton7(),
   Calvin1: new Calvin1()
 }
 
