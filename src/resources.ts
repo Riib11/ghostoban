@@ -2,6 +2,9 @@ import * as ex from 'excalibur';
 import { ImageSource } from 'excalibur';
 import { Wall } from './wall';
 
+export const foodImages = [0, 1, 2, 3, 4].map(i =>
+  new ImageSource(`./src/resources/food/food${i}.png`));
+
 export const images = {
   chair: new ImageSource('./src/resources/chair.png'),
   floor: new ImageSource('./src/resources/floor.png'),
@@ -10,7 +13,7 @@ export const images = {
 }
 
 // make sure to put all the ImageSources here
-export const loader = new ex.Loader(Object.values(images));
+export const loader = new ex.Loader(Object.values(images).concat(foodImages));
 
 
 
