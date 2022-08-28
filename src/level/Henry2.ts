@@ -2,7 +2,7 @@ import * as ex from 'excalibur';
 import { ElectricityGhost1 } from '../ghost/ElectricityGhost1';
 import { TelekinesisGhost } from '../ghost/TelekinesisGhost';
 import { Battery } from '../item/Battey';
-import { Accessory, ElectricalAccessory} from '../accessories/accessory';
+import { Accessory, ElectricalAccessory } from '../accessories/accessory';
 import { ElectricalItem } from '../item/ElectricalItem';
 import { Level } from '../level';
 
@@ -16,10 +16,11 @@ export class Henry2 extends Level {
 
   onInitialize(engine: ex.Engine): void {
     super.onInitialize(engine);
-    
+
     const battery1 = new Battery({
       level: this,
       pos: ex.vec(400, 500),
+      key: ex.Input.Keys.E,
       charged: false
     });
     battery1.addChild(new ex.Label({
@@ -36,12 +37,14 @@ export class Henry2 extends Level {
     const battery2 = new Battery({
       level: this,
       pos: ex.vec(600, 500),
+      key: ex.Input.Keys.E,
       charged: false
     });
 
     const battery3 = new Battery({
       level: this,
       pos: ex.vec(800, 500),
+      key: ex.Input.Keys.E,
       charged: true
     });
 
@@ -58,7 +61,7 @@ export class Henry2 extends Level {
     this.addItem(battery1);
     this.addItem(battery2);
     this.addItem(battery3);
-    
+
     this.addAccessory(new ElectricalAccessory({
       level: this,
       name: "lamp",
@@ -67,7 +70,7 @@ export class Henry2 extends Level {
       // offset: ex.Vector,
       image_name: "lamp",
     }));
-    
+
   }
 
   onPreUpdate(_engine: ex.Engine, _delta: number): void {
