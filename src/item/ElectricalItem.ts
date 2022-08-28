@@ -16,7 +16,7 @@ export class ElectricalItem extends Item {
   }) {
     super({
       ...args,
-      collisionType: ex.CollisionType.Active,
+      collisionType: ex.CollisionType.Fixed,
       color: chargedColor(args.charged)
     });
     this.charged = args.charged;
