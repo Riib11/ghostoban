@@ -4,11 +4,12 @@ import { Player } from '../player';
 import { Ghost } from '../ghost';
 import { ElectricityGhost1 } from '../ghost/ElectricityGhost1';
 import { Item } from '../item'
+import { image_list, collider_list, IHash, IHash2 } from '../resources'
 import { accessoryG } from '../collision'
 
-export interface IHash {
-  [details: string]: ex.Sprite;
-}
+// export interface IHash {
+//   [details: string]: ex.Sprite;
+// }
 
 
 const points = [ex.vec(-25, -25), ex.vec(25, -25), ex.vec(25, 25), ex.vec(-25, 25)];
@@ -227,23 +228,23 @@ img_lamp_on.load();
 const test = new ex.ImageSource('./src/resources/left.gif')
 test.load();
 
-const image_list: IHash = {
-  "lamp": new ex.Sprite({
-    image: img_lamp,
-    destSize: {
-      width: 50,
-      height: 40,
-    },
-  }),
-  "lamp_on": new ex.Sprite({
-    image: img_lamp_on,
-    destSize: {
-      width: 50,
-      height: 40,
-    },
-  }),
-
-}
+// const image_list: IHash = {
+//   "lamp": new ex.Sprite({
+//     image: img_lamp,
+//     destSize: {
+//       width: 50,
+//       height: 40,
+//     },
+//   }),
+//   "lamp_on": new ex.Sprite({
+//     image: img_lamp_on,
+//     destSize: {
+//       width: 50,
+//       height: 40,
+//     },
+//   }),
+// 
+// }
 
 
 

@@ -16,6 +16,7 @@ import { Henry6 } from './level/Henry6';
 import { Jae1 } from './level/Jae1';
 import { Jae2 } from './level/Jae2';
 import { Jae3 } from './level/Jae3';
+import { TutorialTelekinesis } from './level/TutorialTelekinesis';
 import { Main } from './level/Main';
 import { Win } from './level/Win';
 
@@ -33,6 +34,7 @@ export const levels = {
   Jae1: new Jae1(),
   Jae2: new Jae2(),
   Jae3: new Jae3(),
+  TutorialTelekinesis: new TutorialTelekinesis(),
   Bretton1: new Bretton1(),
   Bretton2: new Bretton2(),
   Bretton3: new Bretton3(),
