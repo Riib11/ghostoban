@@ -12,6 +12,7 @@ export class Bretton6 extends Level {
 
   constructor() {
     super({
+      name: 'Beware the Dark',
       player_pos: vec(100, 100),
       exit_pos: vec(950, 500),
       exit_activated: true,

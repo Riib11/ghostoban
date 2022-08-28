@@ -12,6 +12,7 @@ export class Bretton7 extends Level {
 
   constructor() {
     super({
+      name: 'Fear your Shadow',
       player_pos: vec(100, 100),
       exit_pos: vec(950, 950),
       exit_activated: false,
