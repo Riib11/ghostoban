@@ -10,6 +10,7 @@ import { PressurePlate } from '../item/PressurePlate';
 export class TutorialTelekinesis extends Level {
   constructor() {
     super({
+      name: 'Telekinesis',
       player_pos: ex.vec(150, 750),
       exit_pos: ex.vec(150, 850)
     });

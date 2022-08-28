@@ -1,6 +1,8 @@
 import * as ex from 'excalibur';
 import { Label } from 'excalibur';
 import { Level } from '../level';
+import { goToCurrentLevel } from '../levels';
+import { ui } from '../ui';
 
 export class Death extends ex.Scene {
   constructor() {
@@ -8,8 +10,6 @@ export class Death extends ex.Scene {
   }
 
   onInitialize(engine: ex.Engine): void {
-    engine.backgroundColor = ex.Color.Black;
-
     this.add(new Label({
       text: "DEATH",
       pos: ex.vec(500, 500),
@@ -21,5 +21,18 @@ export class Death extends ex.Scene {
         textAlign: ex.TextAlign.Center
       })
     }));
+  }
+
+  onActivate(context: ex.SceneActivationContext<unknown>): void {
+    super.onActivate(context);
+    this.engine.backgroundColor = ex.Color.Black;
+
+    const btn = document.createElement('button');
+    btn.innerHTML = "restart level";
+    btn.onclick = (e) => {
+      e.preventDefault();
+      goToCurrentLevel(this.engine);
+    }
+    ui.appendChild(btn);
   }
 }

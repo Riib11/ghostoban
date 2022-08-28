@@ -13,8 +13,10 @@ import { Damageable } from './Damageable';
 import { Exit } from './Exit';
 import { LevelLighting } from './environment/LevelLighting';
 import { LevelFloor } from './environment/LevelFloor';
+import { title, ui } from './ui';
 
 export class Level extends LevelSelector {
+  name: string;
   // player
   player: Player;
   exit: Exit;
@@ -31,12 +33,15 @@ export class Level extends LevelSelector {
 
   // constructor
   constructor(args: {
+    name?: string
     player_pos: ex.Vector,
     exit_pos: ex.Vector,
     exit_activated?: boolean,
     isLit?: boolean
   }) {
     super();
+
+    this.name = args.name ?? "UNTITLED"
 
     // player
     this.player = new Player({
@@ -78,6 +83,11 @@ export class Level extends LevelSelector {
     super.onInitialize(engine);
   }
 
+  onDeactivate(_context: ex.SceneActivationContext<undefined>): void {
+    title.innerHTML = '';
+    ui.innerHTML = '';
+  }
+
   public reset() {
     // this.player = new Player({
     //   level: this,
@@ -93,6 +103,16 @@ export class Level extends LevelSelector {
     // 
     // this.isLit = args.isLit ?? true;
     // this.onInitialize();
+
+    this.player.reset();
+    this.items.forEach(item => item.reset());
+    this.ghosts.forEach(ghost => ghost.reset());
+  }
+
+  onActivate(context: ex.SceneActivationContext<unknown>): void {
+    super.onActivate(context);
+    this.reset();
+    title.innerHTML = this.name;
   }
 
   static getDistance(pos1: ex.Vector, pos2: ex.Vector): number {

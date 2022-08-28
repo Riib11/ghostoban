@@ -22,6 +22,7 @@ export class Player extends ActorGraphic implements Damageable, Weighted {
   health: number;
   direction: number;
   weight = 50;
+  pos_origin: ex.Vector;
 
   constructor(args: {
     level: Level,
@@ -36,6 +37,7 @@ export class Player extends ActorGraphic implements Damageable, Weighted {
     });
     this.level = args.level;
     this.health = 100;
+    this.pos_origin = args.pos.clone();
     this.addChild(new PlayerController({ player: this, speed: 300 }));
     this.addChild(new Activator({ radius: 50, }));
     this.direction = 1;
@@ -102,6 +104,10 @@ export class Player extends ActorGraphic implements Damageable, Weighted {
 
   onDie() {
     this.level.killPlayer();
+  }
+
+  reset(): void {
+    this.pos = this.pos_origin;
   }
 }
 

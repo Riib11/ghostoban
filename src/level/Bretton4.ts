@@ -10,6 +10,7 @@ export class Bretton4 extends Level {
 
   constructor() {
     super({
+      name: 'Hungier...',
       player_pos: vec(100, 100),
       exit_pos: vec(50, 50)
     });

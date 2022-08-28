@@ -19,6 +19,8 @@ import { Jae3 } from './level/Jae3';
 import { TutorialTelekinesis } from './level/TutorialTelekinesis';
 import { Main } from './level/Main';
 import { Win } from './level/Win';
+import { Level } from './level';
+import { End } from './level/End';
 
 export const levels = {
   Main: new Main(),
@@ -40,11 +42,32 @@ export const levels = {
   Bretton3: new Bretton3(),
   Bretton4: new Bretton4(),
   Bretton5: new Bretton5(),
-  Calvin1: new Calvin1()
+  Calvin1: new Calvin1(),
+  End: new End()
 }
 
 export function addLevels(engine: ex.Engine) {
   for (const [name, level] of Object.entries(levels)) {
     engine.addScene(name, level);
   }
+}
+
+export const progress: (keyof (typeof levels))[] = [
+  'Main',
+  'Jae3', // cleaning 
+  'Bretton5', // hunry (tutorial)
+  'Bretton4', // hungry
+  'TutorialTelekinesis', // tele (tutorial)
+  'Henry6', // tele
+  'End'
+]
+
+export var progressIndex: number = 0;
+
+export function goToCurrentLevel(engine: ex.Engine) {
+  engine.goToScene(progress[progressIndex]);
+}
+
+export function incrementProgress() {
+  progressIndex = Math.min(progressIndex + 1, progress.length);
 }
