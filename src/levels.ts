@@ -62,6 +62,8 @@ export const progress: (keyof (typeof levels))[] = [
   'Bretton4', // hungry
   'TutorialTelekinesis', // tele (tutorial)
   'Henry6', // tele
+  'Bretton6', //  stalker 1
+  'Bretton7', //  stalker 1
   'End'
 ]
 
