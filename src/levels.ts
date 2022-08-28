@@ -70,7 +70,7 @@ export const progress: levelname[] = [
   'End',
 ]
 
-export var progressIndex: number = 0;
+export var progressIndex: number = parseInt(localStorage.getItem('level') ?? '0');
 
 export function goToCurrentLevel(engine: ex.Engine) {
   engine.goToScene(progress[progressIndex]);
@@ -82,4 +82,5 @@ export function resetThenGoToLevel(engine: ex.Engine, name: levelname) {
 
 export function incrementProgress() {
   progressIndex = Math.min(progressIndex + 1, progress.length);
+  localStorage.setItem('level', progressIndex.toString());
 }
