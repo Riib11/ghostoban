@@ -63,7 +63,9 @@ export class PressurePlate extends Item {
   onPreUpdate() {
     const prevPressure = this.pressure;
     this.pressure = [...this.weighteds].reduce((acc, w) => acc + w.weight, 0);
-    this.updateGraphics();
+    if (this.pressure !== prevPressure) {
+      this.updateGraphics();
+    }
     if (prevPressure < activationPressure && this.pressure >= activationPressure) {
       this.onActivate?.();
     }
@@ -75,7 +77,21 @@ export class PressurePlate extends Item {
   private updateGraphics() {
     this.color = Color.Violet.darken(
       Math.min(1, this.pressure / activationPressure));
-    this.label.text = this.pressure.toString();
+    // this.label.text = this.pressure.toString();
+    this.removeChild(this.label);
+    this.label = new Label({
+      text: this.pressure.toString(),
+      pos: Vector.Zero,
+      font: new Font({
+        family: 'helvetica',
+        size: 24,
+        unit: FontUnit.Px,
+        textAlign: TextAlign.Center,
+        color: Color.White
+      }),
+      z: Infinity
+    });
+    this.addChild(this.label);
   }
 
 }
