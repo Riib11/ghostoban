@@ -46,8 +46,8 @@ export class Player extends ActorGraphic implements Damageable, Weighted {
       points,
       color: ex.Color.Red,
     }));
-    
-    
+
+
     const idle_left = ex.Animation.fromSpriteSheet(player_sheet, [0], 0);
     const run_left = ex.Animation.fromSpriteSheet(player_sheet, [0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1], 100);
     const idle_right = ex.Animation.fromSpriteSheet(player_sheet, [8], 0);
@@ -60,9 +60,9 @@ export class Player extends ActorGraphic implements Damageable, Weighted {
     this.graphics.add("run_left", run_left);
     this.graphics.add("idle_right", idle_right);
     this.graphics.add("run_right", run_right);
-    
+
     this.graphics.use("idle_right");
-    
+
   }
   onPreUpdate(engine: ex.Engine, delta: number): void {
     // super.setZIndex(this.pos.y);
@@ -80,7 +80,7 @@ export class Player extends ActorGraphic implements Damageable, Weighted {
       this.direction = 1;
       movement = "run";
     }
-    
+
     if (movement == "idle") {
       if (this.direction == 1) {
         this.graphics.use("idle_right");
@@ -110,13 +110,13 @@ const player_img = new ex.ImageSource('./src/resources/player/player.png');
 player_img.load();
 
 const player_sheet = ex.SpriteSheet.fromImageSource({
-    image: player_img,
-    grid: {
-        rows: 2,
-        columns: 8,
-        spriteWidth: 27,
-        spriteHeight: 27
-    },
+  image: player_img,
+  grid: {
+    rows: 2,
+    columns: 8,
+    spriteWidth: 27,
+    spriteHeight: 27
+  },
 });
 
 

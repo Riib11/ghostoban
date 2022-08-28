@@ -10,7 +10,6 @@ export class Henry5 extends Level {
     super({
       player_pos: ex.vec(150, 50),
       exit_pos: ex.vec(950, 950),
-      isLit: true
     });
   }
 

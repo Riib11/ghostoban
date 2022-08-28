@@ -2,7 +2,7 @@ import * as ex from 'excalibur';
 import { Level } from './level';
 import { ghostG } from './collision';
 
-const DEBUG_GHOSTS = false;
+const DEBUG_GHOSTS = true;
 
 export class Ghost extends ex.Actor {
   level: Level;
