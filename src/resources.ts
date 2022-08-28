@@ -55,6 +55,7 @@ const plant_5 = new ex.ImageSource('./src/resources/plant_5.png')
 const plant_6 = new ex.ImageSource('./src/resources/plant_6.png')
 const television_old = new ex.ImageSource('./src/resources/television_old.png')
 const lamp = new ex.ImageSource('./src/resources/lamp.png')
+const lamp_on = new ex.ImageSource('./src/resources/lamp_on.png')
 const lamp_tall = new ex.ImageSource('./src/resources/lamp_tall.png')
 
 wall.load();
@@ -80,6 +81,7 @@ plant_5.load();
 plant_6.load();
 television_old.load();
 lamp.load();
+lamp_on.load()
 lamp_tall.load();
 
 export const image_list: IHash = {
@@ -233,6 +235,13 @@ export const image_list: IHash = {
       height: 45,
     },
   }),
+  "lamp_on": new ex.Sprite({
+    image: lamp_on,
+    destSize: {
+      width: 50,
+      height: 45,
+    },
+  }),
   "lamp_tall": new ex.Sprite({
     image: lamp_tall,
     destSize: {
@@ -268,6 +277,7 @@ export const collider_list: IHash2 = {
   "plant_6": ex.vec(5, 5),
   "television_old": ex.vec(50, 50),
   "lamp": ex.vec(5, 5),
+  "lamp_on": ex.vec(5, 5),
   "lamp_tall": ex.vec(25, 25),
 }
 

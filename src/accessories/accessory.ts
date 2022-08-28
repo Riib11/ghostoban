@@ -153,10 +153,12 @@ export class ElectricalAccessory extends Accessory {
 
     this.animation_state_electric = 0;
     this.is_on = false;
+    
   }//constructer
 
   public changeSprite(image_name: string) {
     super.changeSprite(image_name);
+    
     const flicker = new ex.Animation({
       frames: [
         {
