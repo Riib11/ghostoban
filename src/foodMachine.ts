@@ -21,6 +21,7 @@ const offset = vec(0, 0);
 export class FoodMachine extends Item {
 
   spinner: Spinner;
+  foods: Set<Food>;
 
   constructor(args: {
     level: Level,
@@ -36,7 +37,7 @@ export class FoodMachine extends Item {
       points: points,
       offset: offset
     });
-
+    this.foods = new Set();
     this.addComponent(new Activatable({
       actor: this,
       points: this.points,
@@ -79,10 +80,12 @@ export class FoodMachine extends Item {
   activate() {
     this.actions.repeatForever(ctx => {
       ctx.delay(3500).callMethod(() => {
-        this.level.addItem(new Food({
+        let f :Food = new Food({
           level: this.level,
           pos: this.pos.add(vec(-25, 0))
-        }));
+        });
+        this.foods.add(f);
+        this.level.addItem(f);
       });
     });
     this.spinner.activate();
@@ -92,5 +95,12 @@ export class FoodMachine extends Item {
     this.actions.clearActions();
     this.spinner.deactivate();
   }
-
+  reset(): void {
+    this.pos = this.pos_origin;
+    this.activate();
+    this.foods.forEach(f => {
+      f.kill();
+    });
+    this.foods = new Set();
+  }
 }
