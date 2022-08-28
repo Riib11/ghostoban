@@ -11,6 +11,7 @@ import { Henry2 } from './level/Henry2';
 import { Henry3 } from './level/Henry3';
 import { Henry4 } from './level/Henry4';
 import { Henry5 } from './level/Henry5';
+import { Henry6 } from './level/Henry6';
 import { Jae1 } from './level/Jae1';
 import { Jae2 } from './level/Jae2';
 import { Main } from './level/Main';
@@ -25,6 +26,7 @@ export const levels = {
   Henry3: new Henry3(),
   Henry4: new Henry4(),
   Henry5: new Henry5(),
+  Henry6: new Henry6(),
   Door1: new Door1(),
   Jae1: new Jae1(),
   Jae2: new Jae2(),

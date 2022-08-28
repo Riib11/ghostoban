@@ -18,9 +18,9 @@ export class LevelFloor extends ex.Entity {
     const sprite = images.floor.toSprite();
     sprite.scale = ex.vec(scale, scale);
     const tilemap = new ex.TileMap({
-      pos: ex.vec(0, 0),
-      rows: Math.ceil(1000 / sprite.height),
-      columns: Math.ceil(1000 / sprite.width),
+      pos: ex.vec(-1000, -1000),
+      rows: 4 * Math.ceil(1000 / sprite.height),
+      columns: 4 * Math.ceil(1000 / sprite.width),
       tileWidth: sprite.width,
       tileHeight: sprite.height,
     });
