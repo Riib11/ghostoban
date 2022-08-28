@@ -14,8 +14,6 @@ export class Main extends Level {
   }
 
   onInitialize(engine: ex.Engine): void {
-    this.exit.setActivated(true); // debug
-
     // this.add(new Label({
     //   text: "-- GHOSTOBAN --",
     //   pos: ex.vec(500, 500),
