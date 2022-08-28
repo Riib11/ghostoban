@@ -24,7 +24,7 @@ export class Bretton3 extends Level {
         this.level.setExitActivated(true);
       }
     }));
-    for (let x = 100; x < 500; x += 50) {
+    for (let x = 100; x < 500; x += 40) {
       this.addItem(new Food({
         level: this,
         pos: vec(x, 900)
