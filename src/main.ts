@@ -1,5 +1,5 @@
 import * as ex from 'excalibur';
-import { addLevels } from './levels';
+import { addLevels, goToCurrentLevel, progressIndex } from './levels';
 import { loader } from './resources';
 
 // physics
@@ -22,5 +22,6 @@ addLevels(engine);
 // Start the engine
 engine.start(loader).then(() => {
   console.log('game start');
-  engine.goToScene('Main');
+  // engine.goToScene('Main');
+  goToCurrentLevel(engine);
 });

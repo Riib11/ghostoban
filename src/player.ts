@@ -69,9 +69,9 @@ export class Player extends ActorGraphic implements Damageable, Weighted {
   onPreUpdate(engine: ex.Engine, delta: number): void {
     // super.setZIndex(this.pos.y);
     this.z = this.pos.y;
-    if (engine.input.keyboard.isHeld(ex.Input.Keys.R)) {
-      this.level.reset();
-    }
+    // if (engine.input.keyboard.isHeld(ex.Input.Keys.R)) {
+    //   // this.level.reset();
+    // }
   }
 
   run_animation(movement: string) {

@@ -128,7 +128,7 @@ export class Level extends LevelSelector {
 
   onActivate(context: ex.SceneActivationContext<unknown>): void {
     super.onActivate(context);
-    this.reset();
+    // this.reset();
 
     title.innerHTML = this.name;
 
@@ -145,10 +145,19 @@ export class Level extends LevelSelector {
     const btn_reset = document.createElement('button');
     btn_reset.innerHTML = "restart level";
     btn_reset.onclick = (e) => {
-      e.preventDefault();
-      goToCurrentLevel(this.engine);
+      // e.preventDefault();
+      // goToCurrentLevel(this.engine);
+      location.reload();
     }
     ui.appendChild(btn_reset);
+
+    const btn_restart = document.createElement('button');
+    btn_restart.innerHTML = "restart everything";
+    btn_restart.onclick = (e) => {
+      localStorage.clear();
+      location.reload();
+    }
+    ui.appendChild(btn_restart);
   }
 
   static getDistance(pos1: ex.Vector, pos2: ex.Vector): number {
