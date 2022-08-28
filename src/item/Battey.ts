@@ -9,12 +9,16 @@ const offset = ex.vec(0, 0);
 export class Battery extends ElectricalItem {
 
   activatable: Activatable;
+  onActivate?: () => void;
+  onDeactivate?: () => void;
 
   constructor(args: {
     level: Level,
     pos: ex.Vector,
     key: ex.Input.Keys,
     charged: boolean,
+    onActivate?: () => void,
+    onDeactivate?: () => void
   }) {
     super({
       ...args,
@@ -33,5 +37,14 @@ export class Battery extends ElectricalItem {
       isActivated: args.charged,
     })
     this.addComponent(this.activatable);
+    this.onActivate = args.onActivate;
+    this.onDeactivate = args.onDeactivate;
+  }
+
+  onPreUpdate() {
+    if (this.charged)
+      this.onActivate?.();
+    else
+      this.onDeactivate?.();
   }
 }
