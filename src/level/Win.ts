@@ -38,8 +38,7 @@ export class Win extends ex.Scene {
     const btn_reset = document.createElement('button');
     btn_reset.innerHTML = "restart level";
     btn_reset.onclick = (e) => {
-      e.preventDefault();
-      goToCurrentLevel(this.engine);
+      location.reload();
     }
     ui.appendChild(btn_reset);
   }
